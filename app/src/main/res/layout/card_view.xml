@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/charityCoverImg"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+
+        android:scaleType="centerCrop"
+        android:alpha="1"
+        android:src="@drawable/girlpad2" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/charityProfilePic"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/charitypro"
+            android:layout_below="@+id/charityCoverImg"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/charityCoverImg"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="17dp"
+            android:layout_toEndOf="@+id/charityProfilePic"
+            android:textColor="@color/black"
+            android:text="Inua-dada Foundation" />
+
+        <Button
+            android:id="@+id/btnDonate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/charityProfilePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/round_donate_button"
+            android:drawableEnd="@drawable/ic_outline_monetization_on_24"
+
+            android:paddingHorizontal="20dp"
+            android:text="Donate "
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+</FrameLayout>
