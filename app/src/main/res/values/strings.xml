@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Automated-donation-platform-android</string>
+    <string-array name="categories">
+        <item>Admin</item>
+        <item>Donor</item>
+        <item>Charity</item>
+    </string-array>
 </resources>
