@@ -70,12 +70,22 @@
             android:textColorHint="@color/colorDivider"
             android:textSize="20sp" />
 
+<!--        <Spinner-->
+<!--            android:id="@+id/spinner1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:drawable/spinner_dropdown_background"-->
+<!--            android:spinnerMode="dropdown"/>-->
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+            android:background="@drawable/rounded_edittext"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:spinnerMode="dropdown" />
 
         <EditText
             android:id="@+id/passwordEditText"
