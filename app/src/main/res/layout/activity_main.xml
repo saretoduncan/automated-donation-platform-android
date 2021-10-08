@@ -27,18 +27,20 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="160dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="15dp"
         android:text="SignUp"
+        android:textAllCaps="false"
+        android:textSize="25dp"
         app:cornerRadius="20dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="159dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="38dp"
@@ -47,6 +49,8 @@
         android:layout_toStartOf="@+id/button2"
         android:backgroundTint="@color/colorPrimaryText"
         android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="25dp"
         app:cornerRadius="20dp" />
 
     <TextView
