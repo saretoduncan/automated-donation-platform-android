@@ -25,7 +25,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signUpPageBtn"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -38,7 +38,7 @@
         app:cornerRadius="20dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginPageBtn"
         android:layout_width="159dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
