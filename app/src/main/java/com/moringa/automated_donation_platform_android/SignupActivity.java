@@ -16,8 +16,7 @@ import butterknife.ButterKnife;
 
 public class SignupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private Spinner spinner;
-    @BindView(R.id.spinner) Spinner mSpinner;
+    @BindView(R.id.spinner) Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

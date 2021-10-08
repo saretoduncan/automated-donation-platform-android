@@ -104,24 +104,13 @@
             android:textColorHint="@color/colorDivider"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/forgotPasswordTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="Forgot Password?"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="10dp"
-            android:text="LogIn"
+            android:text="SignUp"
             android:textAllCaps="false"
             android:textColor="@color/colorTextIcons"
             android:textSize="25dp"
@@ -133,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Already have an account? Sign In here!"
+            android:text="Already have an account? Sign In!"
             android:textSize="18sp"
             android:textStyle="bold" />
 

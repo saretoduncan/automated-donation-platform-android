@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.loginPageBtn) Button mLoginButton;
+    @BindView(R.id.signUpPageBtn) Button mSignupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +21,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mLoginButton.setOnClickListener(this);
+        mSignupButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == mLoginButton) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        if (v == mSignupButton) {
+            Intent intent = new Intent(MainActivity.this, SignupActivity.class);
             startActivity(intent);
         }
     }
