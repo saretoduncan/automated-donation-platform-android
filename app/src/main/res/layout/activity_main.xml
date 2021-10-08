@@ -7,14 +7,12 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="A-donate"
-        android:textSize="48sp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/donation" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -23,35 +21,46 @@
         android:layout_marginEnd="321dp"
         android:layout_marginBottom="683dp">
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="263dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="15dp"
-        app:cornerRadius="20dp"
-        android:text="SignUp" />
+        android:text="SignUp"
+        app:cornerRadius="20dp" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="159dp"
         android:layout_height="48dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="265dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="15dp"
-        app:cornerRadius="20dp"
         android:layout_toStartOf="@+id/button2"
+        android:backgroundTint="@color/colorPrimaryText"
         android:text="Login"
-        android:backgroundTint="@color/colorPrimaryText"/>
+        app:cornerRadius="20dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="252dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textStyle="bold"
+        android:text="A-donate"
+        android:textSize="48sp" />
 
 
 </RelativeLayout>
