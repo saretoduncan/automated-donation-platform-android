@@ -11,9 +11,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/cousine"
         android:text="Welcome Back!"
         android:textSize="25dp"
@@ -24,11 +25,12 @@
         android:layout_width="154dp"
         android:layout_height="129dp"
         android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="129dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="128dp"
-        android:layout_marginBottom="424dp"
         app:srcCompat="@drawable/undraw_mobile_login_re_9ntv__1_" />
 
 
@@ -36,8 +38,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="81dp"
+        android:layout_marginTop="32dp"
+        android:layout_alignBottom="@id/imageView2"
         android:orientation="vertical"
         android:padding="30dp">
 
