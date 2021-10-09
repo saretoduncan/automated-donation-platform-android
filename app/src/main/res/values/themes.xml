@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="toolbartheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:colorPrimary">@color/blue</item>
+
     </style>
 </resources>
