@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     Home_fragement home_fragement;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     switch(item.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = home_fragement;
+                            break;
+                        case R.id.nav_donations:
+                            selectedFragment= new DonationList_fragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,selectedFragment).commit();
