@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    android:layout_margin="5dp"
+android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="10dp"
     app:cardCornerRadius="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:id="@+id/charityRelative">
 
             <ImageView
@@ -56,6 +57,7 @@
             android:layout_below="@+id/charityRelative"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
+            android:id="@+id/charityProfileName"
             android:layout_toEndOf="@+id/charityProfilePic"
             android:textColor="@color/black"
             android:text="Inua-dada Foundation" />
@@ -75,7 +77,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
 
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
 
             />

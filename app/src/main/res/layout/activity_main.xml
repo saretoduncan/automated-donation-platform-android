@@ -11,10 +11,19 @@
         android:id="@+id/toolbar"/>
 
 
+<FrameLayout
+    android:layout_width="match_parent"
+    android:id="@+id/frameLayout1"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/navbar"
+    android:layout_below="@+id/toolbar"/>
+
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        style="@style/toolbartheme"
+        android:id="@+id/navbar"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
@@ -24,9 +33,4 @@
 
         app:labelVisibilityMode="labeled"
         app:menu="@menu/item_menu" />
-    <androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@+id/toolbar"/>
-
 </RelativeLayout>
