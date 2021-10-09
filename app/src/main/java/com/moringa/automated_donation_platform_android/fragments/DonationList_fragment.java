@@ -29,6 +29,7 @@ public class DonationList_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_donation_list_fragment, container, false);
         ButterKnife.bind(this,view);
+
         adapter = new DonationListAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
