@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -16,13 +18,11 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.DonorsViewHolder> {
-    List<String> names;
-    List<Integer> amount;
+    List<Donor> donors;
     Context context;
 
-    public DonorListAdapter(Context context, List<String> names, List<Integer> amount) {
-        this.names = names;
-        this.amount = amount;
+    public DonorListAdapter(Context context, List<Donor> donors) {
+        this.donors = donors;
         this.context = context;
     }
 
@@ -36,12 +36,16 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @Override
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
-//        holder.donorAmountTxt.setText();
+        holder.donorAmountTxt.setText(Integer.toString(donors.get(position).getAmount()));
+        holder.nameTxt.setText(donors.get(position).getName());
+        String imageUrl = donors.get(position).getImage();
+        Picasso.get().load(imageUrl).into(holder.donorImage);
+
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return donors.size();
     }
 
     public class DonorsViewHolder extends RecyclerView.ViewHolder {
