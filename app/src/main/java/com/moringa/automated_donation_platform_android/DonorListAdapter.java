@@ -38,8 +38,9 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
         holder.donorAmountTxt.setText(Integer.toString(donors.get(position).getAmount()));
         holder.nameTxt.setText(donors.get(position).getName());
-        String imageUrl = donors.get(position).getImage();
-        Picasso.get().load(imageUrl).into(holder.donorImage);
+        holder.donorImage.setImageResource(donors.get(position).getImage());
+//        String imageUrl = donors.get(position).getImage();
+//        Picasso.get().load(imageUrl).into(holder.donorImage);
 
     }
 
