@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/amountLayout"
         android:layout_centerInParent="true"
+        android:textColor="@color/colorPrimaryText"
         android:text="Non-Anonymous Donors"
         android:textStyle="bold"
         android:textSize="20dp">
@@ -62,8 +63,7 @@
         android:id="@+id/donorList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/anonymousLabel"/>
-
+        android:layout_below="@id/anonymousLabel"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

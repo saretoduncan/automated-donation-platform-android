@@ -29,7 +29,6 @@
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_centerVertical="true"
                 android:src="@drawable/splashbg"
-                app:civ_border_color="#FF000000"
                 android:id="@+id/donorProfilePic"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -38,8 +37,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:civ_border_width="2dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -49,6 +47,7 @@
                 android:text="Duncan"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/donorProfilePic" />
@@ -58,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Donation: Ksh. 500"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -36,7 +36,8 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @Override
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
-        holder.donorAmountTxt.setText(Integer.toString(donors.get(position).getAmount()));
+        String amt = Integer.toString(donors.get(position).getAmount());
+        holder.donorAmountTxt.setText("Ksh. " + amt);
         holder.nameTxt.setText(donors.get(position).getName());
         holder.donorImage.setImageResource(donors.get(position).getImage());
 //        String imageUrl = donors.get(position).getImage();

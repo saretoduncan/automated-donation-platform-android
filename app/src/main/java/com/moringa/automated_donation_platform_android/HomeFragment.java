@@ -29,14 +29,14 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mDonors = new ArrayList<>();
-        mDonors.add(new Donor("Duncan Moiyo",500,R.drawable.pic1));
+        mDonors.add(new Donor("Duncan",500,R.drawable.pic1));
         mDonors.add(new Donor("Osambo",500,R.drawable.pic2));
         mDonors.add(new Donor("Clare",500,R.drawable.pic3));
-        mDonors.add(new Donor("Caroh",3500,R.drawable.pic4));
-        mDonors.add(new Donor("Duncan Moiyo",500,R.drawable.pic1));
+        mDonors.add(new Donor("Caroh",500,R.drawable.pic4));
+        mDonors.add(new Donor("Duncan",500,R.drawable.pic1));
         mDonors.add(new Donor("Osambo",500,R.drawable.pic2));
         mDonors.add(new Donor("Clare",500,R.drawable.pic3));
-        mDonors.add(new Donor("Caroh",3500,R.drawable.pic4));
+        mDonors.add(new Donor("Caroh",500,R.drawable.pic4));
 
     }
 
