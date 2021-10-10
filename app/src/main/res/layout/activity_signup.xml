@@ -30,7 +30,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp" />
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -70,12 +69,6 @@
             android:textColorHint="@color/colorDivider"
             android:textSize="20sp" />
 
-<!--        <Spinner-->
-<!--            android:id="@+id/spinner1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@android:drawable/spinner_dropdown_background"-->
-<!--            android:spinnerMode="dropdown"/>-->
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
