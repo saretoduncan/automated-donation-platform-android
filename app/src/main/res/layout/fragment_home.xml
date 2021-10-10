@@ -37,7 +37,7 @@
                     android:text="Ksh. 3500"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:layout_below="@+id/paymentLabel"
                     android:layout_centerHorizontal="true">
 
@@ -48,6 +48,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/anonymousLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/amountLayout"
@@ -55,7 +56,13 @@
         android:text="Non-Anonymous Donors"
         android:textStyle="bold"
         android:textSize="20dp">
-
     </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/anonymousLabel"/>
+
 
 </RelativeLayout>
