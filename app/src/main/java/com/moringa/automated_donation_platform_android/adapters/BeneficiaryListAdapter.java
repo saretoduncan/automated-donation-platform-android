@@ -48,9 +48,10 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
     }
 
     public class BeneficiaryViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.nameTextView) TextView nameTxt;
+        @BindView(R.id.beneficiaryNameTextView) TextView nameTxt;
         @BindView(R.id.testimonialTxtView) TextView testimonialTxt;
         @BindView(R.id.beneficiaryProfilePic) CircleImageView beneficiaryImage;
+
         public BeneficiaryViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
