@@ -36,24 +36,12 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profileLayout"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_edittext"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
-
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:layout_below="@+id/searchView"
+        android:layout_below="@+id/profileLayout"
         android:background="@color/colorAccent">
 
     </FrameLayout>

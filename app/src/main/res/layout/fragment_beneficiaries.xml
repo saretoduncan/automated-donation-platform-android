@@ -6,11 +6,23 @@
     tools:context=".fragments.BeneficiariesFragment"
     android:background="@color/colorAccent">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here" />
+
     <TextView
         android:id="@+id/beneficiaryLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/searchView"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimaryText"
         android:text="Beneficiary Testimonials"
