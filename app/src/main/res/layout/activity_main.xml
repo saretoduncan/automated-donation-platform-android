@@ -8,7 +8,8 @@
     android:background="#FBF0F0"
     >
     <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        />
 
 
 <FrameLayout
@@ -17,6 +18,8 @@
     android:layout_height="match_parent"
     android:layout_above="@+id/navbar"
     android:layout_below="@+id/toolbar"/>
+
+
 
 
 
