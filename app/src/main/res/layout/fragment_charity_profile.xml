@@ -7,33 +7,33 @@
     tools:context=".fragments.BeneficiaryProfileFragment"
     android:background="@color/colorAccent">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/splashbg"
-        />
-    <TextView
-        android:id="@+id/charityName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/profile_image"
-        android:fontFamily="@font/cousine"
-        android:text="Inua Dada Foundation"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+<!--    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/profile_image"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:src="@drawable/splashbg"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/charityName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@+id/profile_image"-->
+<!--        android:fontFamily="@font/cousine"-->
+<!--        android:text="Inua Dada Foundation"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:textSize="24dp"-->
+<!--        android:textStyle="bold" />-->
 
     <RelativeLayout
         android:id="@+id/infoLayout"
         android:orientation="vertical"
-        android:layout_below="@id/charityName"
         android:layout_width="wrap_content"
         android:padding="10dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
 
@@ -167,22 +167,19 @@
                 android:drawableStart="@drawable/ic_baseline_picture_as_pdf_24"
                 android:layout_toRightOf="@+id/text_view_trust"/>
         </RelativeLayout>
+        <Button
+            android:id="@+id/updateCharityBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:padding="8dp"
+            android:layout_alignParentBottom="true"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="20dp"
+            app:cornerRadius="50dp" />
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/updateCharityBtn"
-        android:layout_width="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/infoLayout"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="66dp"
-        android:layout_marginBottom="66dp"
-        android:padding="10dp"
-        android:text="Update"
-        android:textAllCaps="false"
-        android:textColor="@color/colorTextIcons"
-        android:textSize="25dp"
-        app:cornerRadius="50dp" />
 
 </RelativeLayout>
