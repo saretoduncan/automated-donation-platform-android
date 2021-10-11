@@ -1,9 +1,11 @@
 package com.moringa.automated_donation_platform_android.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -42,6 +44,27 @@ public class CharityActivity extends AppCompatActivity {
                     break;
                 case R.id.navProfile:
                     selectedFragment = new BeneficiaryProfileFragment();
+                    break;
+                case R.id.navLogout:
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CharityActivity.this);
+                    builder.setMessage("Do you really have to\n" +
+                            "log out?");
+                    builder.setCancelable(true);
+                    builder.setNegativeButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+                    builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
