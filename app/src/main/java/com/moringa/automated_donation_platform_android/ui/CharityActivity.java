@@ -65,6 +65,7 @@ public class CharityActivity extends AppCompatActivity {
 
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
+                    selectedFragment = new HomeFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
