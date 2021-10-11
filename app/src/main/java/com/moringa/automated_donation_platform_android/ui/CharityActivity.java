@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android;
+package com.moringa.automated_donation_platform_android.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.fragments.BeneficiariesFragment;
+import com.moringa.automated_donation_platform_android.fragments.HomeFragment;
+import com.moringa.automated_donation_platform_android.fragments.ProfileFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

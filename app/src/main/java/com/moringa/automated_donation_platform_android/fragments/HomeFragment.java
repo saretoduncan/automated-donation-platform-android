@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android;
+package com.moringa.automated_donation_platform_android.fragments;
 
 import android.os.Bundle;
 
@@ -10,11 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moringa.automated_donation_platform_android.models.Donor;
+import com.moringa.automated_donation_platform_android.DonorListAdapter;
+import com.moringa.automated_donation_platform_android.R;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment {
     RecyclerView mRecyclerView;
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mDonors = new ArrayList<>();
-        mDonors.add(new Donor("Duncan",500,R.drawable.pic1));
+        mDonors.add(new Donor("Duncan",500, R.drawable.pic1));
         mDonors.add(new Donor("Osambo",500,R.drawable.pic2));
         mDonors.add(new Donor("Clare",500,R.drawable.pic3));
         mDonors.add(new Donor("Caroh",500,R.drawable.pic4));

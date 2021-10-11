@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android;
+package com.moringa.automated_donation_platform_android.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.moringa.automated_donation_platform_android.R;
 
 import java.util.ArrayList;
 import java.util.List;
