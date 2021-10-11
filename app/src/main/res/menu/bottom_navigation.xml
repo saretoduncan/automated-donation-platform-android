@@ -7,13 +7,16 @@
     <item
         android:id="@+id/navBeneficiaries"
         android:icon="@drawable/ic_baseline_insert_emoticon_24"
+        android:enabled="true"
         android:title="Beneficiaries"/>
     <item
         android:id="@+id/navProfile"
         android:icon="@drawable/ic_baseline_person_24"
+        android:enabled="true"
         android:title="Profile"/>
     <item
         android:id="@+id/navLogout"
         android:icon="@drawable/baseline_logout_black_24"
+        android:enabled="true"
         android:title="Logout"/>
 </menu>

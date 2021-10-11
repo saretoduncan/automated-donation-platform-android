@@ -11,7 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.BeneficiariesFragment;
 import com.moringa.automated_donation_platform_android.fragments.HomeFragment;
-import com.moringa.automated_donation_platform_android.fragments.ProfileFragment;
+import com.moringa.automated_donation_platform_android.fragments.BeneficiaryProfileFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +41,7 @@ public class CharityActivity extends AppCompatActivity {
                     selectedFragment = new BeneficiariesFragment();
                     break;
                 case R.id.navProfile:
-                    selectedFragment = new ProfileFragment();
+                    selectedFragment = new BeneficiaryProfileFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
