@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android;
+package com.moringa.automated_donation_platform_android.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.Donor;
 
 import java.util.List;

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moringa.automated_donation_platform_android.models.Donor;
-import com.moringa.automated_donation_platform_android.DonorListAdapter;
+import com.moringa.automated_donation_platform_android.adapters.DonorListAdapter;
 import com.moringa.automated_donation_platform_android.R;
 
 import java.util.ArrayList;
