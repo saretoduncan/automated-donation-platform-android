@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.BeneficiaryProfileFragment"
+    android:background="@color/colorAccent">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/splashbg"
+        />
+    <TextView
+        android:id="@+id/charityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/profile_image"
+        android:fontFamily="@font/cousine"
+        android:text="Inua Dada Foundation"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/infoLayout"
+        android:orientation="vertical"
+        android:layout_below="@id/charityName"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/emailLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_boat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+
+            <EditText
+                android:id="@+id/entry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:layout_below="@id/entry"
+                android:layout_toRightOf="@+id/text_view_boat1"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textPersonName"
+                android:hint="inua.dada@dada.org"
+                android:drawableEnd="@drawable/ic_baseline_edit_24" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/phoneLayout"
+            android:orientation="vertical"
+            android:layout_below="@id/emailLayout"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_boat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone: "
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:layout_toRightOf="@+id/text_view_boat2"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textPersonName"
+                android:hint="020-0011029394"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/aboutLayout"
+            android:orientation="vertical"
+            android:layout_below="@id/phoneLayout"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Us: "
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true" />
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_toRightOf="@+id/text_view_about"
+                android:fillViewport="true">
+
+                <EditText
+                    android:id="@+id/editTextAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp"
+                    android:inputType="textMultiLine"
+                    android:background="@android:drawable/editbox_background"
+                    android:hint="To improve the life  opportunities of youth aged 10-24 through strategic empowerment for sustainable development."
+                    android:drawableEnd="@drawable/ic_baseline_edit_24" />
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/trustLayout"
+            android:orientation="vertical"
+            android:layout_below="@id/aboutLayout"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_trust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Trust Deed: "
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/button"
+                android:text=" Trust Deed .."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:paddingLeft="10dp"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:drawableStart="@drawable/ic_baseline_picture_as_pdf_24"
+                android:layout_toRightOf="@+id/text_view_trust"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/updateCharityBtn"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infoLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="66dp"
+        android:padding="10dp"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextIcons"
+        android:textSize="25dp"
+        app:cornerRadius="50dp" />
+
+</RelativeLayout>
