@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 
 
 public class DonationList_fragment extends Fragment {
-    private DonationListAdapter adapter;
+    private DonationListAdapter adapter;//donation list adapter
     @BindView(R.id.donorsRecyclerView)
     RecyclerView recyclerView;
 
@@ -30,9 +30,9 @@ public class DonationList_fragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_donation_list_fragment, container, false);
         ButterKnife.bind(this,view);
 
-        adapter = new DonationListAdapter();
+        adapter = new DonationListAdapter();// create new  of donation adapter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);//set recycler layout
         recyclerView.setAdapter(adapter);
         return view;
     }

@@ -36,8 +36,8 @@ View toolbar;
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         home_fragement= new Home_fragement();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();
-    bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
+        bottomNav.setOnNavigationItemSelectedListener(navListener);// listen to navigation bar button click
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener  navListener=
@@ -46,16 +46,17 @@ View toolbar;
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
                     switch(item.getItemId()){
-                        case R.id.nav_home:
-                            toolbar_visibility_visible();
-                            selectedFragment = home_fragement;
+                        case R.id.nav_home://home fragemnt
 
-                            break;
-                        case R.id.nav_donations:
+                            selectedFragment = home_fragement;
                             toolbar_visibility_visible();
-                            selectedFragment= new DonationList_fragment();
                             break;
-                        case R.id.nav_profile:
+                        case R.id.nav_donations://donation fragment
+
+                            selectedFragment= new DonationList_fragment();
+                            toolbar_visibility_visible();
+                            break;
+                        case R.id.nav_profile://profile fragment
                             toolbar_visibility_gone();
                             selectedFragment= new Profile_fragment();
                             break;
@@ -67,8 +68,8 @@ View toolbar;
             };
     public void toolbar_visibility_gone(){
        toolbar.setVisibility(View.GONE);
-    }
+    }//hide action bar
     public void toolbar_visibility_visible(){
         toolbar.setVisibility(View.VISIBLE);
-    }
+    }// show action bar
 }
