@@ -1,5 +1,6 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,7 +55,6 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         mSignup = view.findViewById(R.id.signUpButton);
         spinner = view.findViewById(R.id.spinner);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item,categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -68,6 +68,8 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     public void onClick(View view) {
         if(callbackFragment != null && category.equals("Charity")){
             callbackFragment.changeFragment();
+        }else {
+            moveToNewActivity();
         }
     }
 
@@ -88,5 +90,12 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Auto-generated method stub
+    }
+
+    private void moveToNewActivity () {
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        startActivity(i);
+        ((Activity) getActivity()).overridePendingTransition(0, 0);
+
     }
 }
