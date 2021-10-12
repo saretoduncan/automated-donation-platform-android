@@ -3,11 +3,13 @@ package com.moringa.automated_donation_platform_android;
 import static android.view.View.GONE;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,7 +62,30 @@ View toolbar;
                             toolbar_visibility_gone();
                             selectedFragment= new Profile_fragment();
                             break;
+                        case R.id.nav_exit:
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Do you really have to\n" +
+                                "log out?");
+                        builder.setCancelable(true);
+                        builder.setNegativeButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        });
+                        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                        selectedFragment= home_fragement;
+                        break;
                     }
+
                     assert selectedFragment != null;
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,selectedFragment).commit();
                     return true;
