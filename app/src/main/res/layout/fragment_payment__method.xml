@@ -12,50 +12,57 @@
         android:id="@+id/back_button_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"/>
+        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24" />
 <RelativeLayout
     android:id="@+id/payment_title"
+    android:layout_below="@+id/text_payment"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="50dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-<de.hdodenhof.circleimageview.CircleImageView
-    android:id="@+id/payment_profile_image"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:src="@drawable/charitypro"
 
-    />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/payment_profile_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/charitypro"
+
+        />
+
     <TextView
+        android:id="@+id/text_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/payment_profile_image"
-        android:textStyle="bold"
-        android:text="Inua-dada Foundation"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/payment_profile_image"
+        android:text="Inua-dada Foundation"
+        android:textColor="@color/blue"
         android:textSize="20dp"
+        android:textStyle="bold"
 
 
         />
 </RelativeLayout>
+
     <TextView
         android:id="@+id/text_payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payment"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/payment_title"
-        android:textSize="30sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/back_button_1"
+        android:fontFamily="sans-serif"
+        android:text="Summary"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="25sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_payment"
+        android:layout_below="@+id/payment_title"
         android:id="@+id/card_relative"
         android:layout_marginTop="30dp"
         android:background="@drawable/card_border">
@@ -89,15 +96,42 @@
         android:text="Edit card info"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/card_relative"/>
+
     <TextView
+        android:id="@+id/add_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+ Add Card"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/card_relative"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/card_relative"/>
+        android:textColor="@color/blue"
+        android:layout_marginTop="10dp"
+        android:text="+ Add Card" />
+
+    <TextView
+        android:id="@+id/total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pay_button"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:text="Total"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/donationAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pay_button"
+        android:layout_marginBottom="20dp"
+android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:text="ksh 2000"
+        android:textColor="@color/blue"
+        android:textSize="20sp" />
 
     <Button
+        android:id="@+id/pay_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

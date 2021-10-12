@@ -12,9 +12,9 @@
         android:id="@+id/text_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"/>
+        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24" />
 
     <TextView
         android:id="@+id/text_add_card"
@@ -60,10 +60,12 @@
             android:layout_weight="1"
             android:hint="@string/cvc" />
     </LinearLayout>
+
     <Button
+        android:id="@+id/save_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_below="@id/linear"
+        android:layout_below="@id/linear"
         android:layout_marginTop="30dp"
         android:background="@drawable/round_donate_button"
         android:text="@string/save"
