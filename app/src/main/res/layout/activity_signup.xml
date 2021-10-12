@@ -116,8 +116,8 @@
             android:text="SignUp"
             android:textAllCaps="false"
             android:textColor="@color/colorTextIcons"
-            android:textSize="25dp"
-            app:cornerRadius="50dp" />
+            android:background="@drawable/rounded_button"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/loginTextView"
