@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_border">
+
+    <TextView
+        android:id="@+id/text_view_mastercard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:drawableStart="@drawable/ic_baseline_credit_card_24"
+        android:text=" Mastercard"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:fontFamily="@font/cousine"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="**8743"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        />
+
+</RelativeLayout>

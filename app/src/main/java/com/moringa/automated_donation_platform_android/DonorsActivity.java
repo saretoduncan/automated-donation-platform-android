@@ -1,19 +1,14 @@
 package com.moringa.automated_donation_platform_android;
 
-import static android.view.View.GONE;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewStub;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,7 +17,7 @@ import com.moringa.automated_donation_platform_android.fragments.*;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class DonorsActivity extends AppCompatActivity {
 
 @BindView(R.id.navbar)
     BottomNavigationView bottomNav;
@@ -35,7 +30,7 @@ View toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_donors);
         ButterKnife.bind(this);
         home_fragement= new Home_fragement();
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
@@ -63,7 +58,7 @@ View toolbar;
                             selectedFragment= new Profile_fragment();
                             break;
                         case R.id.nav_exit:
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DonorsActivity.this);
                         builder.setMessage("Do you really have to\n" +
                                 "log out?");
                         builder.setCancelable(true);

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapter.DonationListAdapter;
@@ -21,6 +22,7 @@ public class DonationList_fragment extends Fragment {
     private DonationListAdapter adapter;//donation list adapter
     @BindView(R.id.donorsRecyclerView)
     RecyclerView recyclerView;
+
 
 
     @Override

@@ -22,12 +22,15 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/text_view_amount"
     android:text="@string/please_enter_the_amount_you_want_to_give"/>
+
     <EditText
-       android:id="@+id/edit_text_amount"
-        android:layout_below="@+id/text_view_enter"
+        android:id="@+id/edit_text_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_below="@+id/text_view_enter"
         android:hint="@string/your_amount" />
+
     <Button
         android:id="@+id/btnDonateDialog"
         android:layout_width="wrap_content"
