@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/beneficiary_list_item.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/donor_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_beneficiaries.xml" value="0.18" />
