@@ -36,7 +36,7 @@ View toolbar;
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         home_fragement= new Home_fragement();
-        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
         bottomNav.setOnNavigationItemSelectedListener(navListener);// listen to navigation bar button click
 
     }
