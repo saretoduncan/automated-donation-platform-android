@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.dialogs.DonationDialog;
 
 import java.util.List;
 
