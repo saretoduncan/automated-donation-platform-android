@@ -1,6 +1,7 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.ui.LoginActivity;
+import com.moringa.automated_donation_platform_android.ui.SignupActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +66,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
     @Override
     public void onClick(View view) {
-        if(callbackFragment != null ){
+        if(callbackFragment != null && category.equals("Charity")){
             callbackFragment.changeFragment();
         }
     }
