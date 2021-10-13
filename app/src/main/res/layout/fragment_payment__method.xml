@@ -39,7 +39,7 @@
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/payment_profile_image"
         android:text="Inua-dada Foundation"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorPrimary"
         android:textSize="20dp"
         android:textStyle="bold"
 
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_relative"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
         android:text="+ Add Card" />
 
@@ -127,7 +127,7 @@
 android:textStyle="bold"
         android:layout_alignParentEnd="true"
         android:text="ksh 2000"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
     <Button

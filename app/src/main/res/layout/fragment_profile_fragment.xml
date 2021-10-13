@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Jemimah"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorPrimary"
         android:drawableEnd="@drawable/ic_baseline_edit_24"
 
         />
