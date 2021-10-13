@@ -17,7 +17,10 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/beneficiary_list_item.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/card_view.xml" value="0.14628623188405798" />
+        <entry key="app/src/main/res/layout/donation_display.xml" value="0.14628623188405798" />
         <entry key="app/src/main/res/layout/donor_list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_add_card.xml" value="0.14628623188405798" />
         <entry key="app/src/main/res/layout/fragment_beneficiaries.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_beneficiary_profile.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_charity_approval.xml" value="0.33" />
@@ -26,7 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_home_fragement.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_payment__method.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1859375" />
-        <entry key="app/src/main/res/layout/fragment_profile_fragment.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/frame_layout.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_donation_dialog.xml" value="0.19791666666666666" />
