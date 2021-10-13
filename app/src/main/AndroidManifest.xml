@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Automateddonationplatformandroid">
         <activity
-            android:name=".DonorsActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +18,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".DonorsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.CharityActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

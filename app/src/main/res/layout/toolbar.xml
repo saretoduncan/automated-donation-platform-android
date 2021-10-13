@@ -22,7 +22,7 @@
             android:fontFamily="@font/cousine"
             android:padding="10dp"
             android:text="Jemimah"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
     </RelativeLayout>
 

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Automated-donation-platform-android</string>
+    <string-array name="categories">
+        <item>Admin</item>
+        <item>Donor</item>
+        <item>Charity</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="support_a_girl_in_samburu_who_can_t_go_to_school_due_to_lack_of_sanitary_towels">Support a girl in samburu who can’t go to school due to lack of sanitary towels</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
