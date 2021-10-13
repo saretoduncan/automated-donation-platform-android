@@ -106,9 +106,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/uploadFile"
             android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
             android:text="Get Approval" />
-
-
     </RelativeLayout>
 
 </RelativeLayout>

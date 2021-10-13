@@ -156,6 +156,7 @@
             android:layout_alignParentBottom="true"
             android:text="Update"
             android:textAllCaps="false"
+            android:background="@drawable/rounded_button"
             android:textColor="@color/colorTextIcons"
             android:textSize="20dp"
             app:cornerRadius="50dp" />
