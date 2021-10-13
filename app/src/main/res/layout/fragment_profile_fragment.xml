@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fadePink"
+    tools:context=".fragments.Profile_fragment">
+
+   <de.hdodenhof.circleimageview.CircleImageView
+       android:id="@+id/pro_profile_pic"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:src="@drawable/splashbg"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="150dp"
+       />
+
+    <EditText
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pro_profile_pic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Jemimah"
+        android:textColor="@color/colorPrimary"
+        android:drawableEnd="@drawable/ic_baseline_edit_24"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileName"
+        android:orientation="horizontal"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="10dp">
+
+        <TextView
+            android:id="@+id/email_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:textSize="18dp"
+            android:textColor="@color/black"
+            android:text="Email: " />
+
+        <EditText
+
+            android:id="@+id/editText_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:drawableEnd="@drawable/ic_baseline_edit_24"
+            android:text="inua.dada@dada.org" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mail"
+        android:orientation="horizontal"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="10dp">
+
+        <TextView
+            android:id="@+id/textView_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone: "
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/editText_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_baseline_edit_24"
+            android:ems="10"
+            android:text="020-0011029394" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone"
+        android:orientation="horizontal"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="10dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio: "
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_baseline_edit_24"
+            android:ems="10"
+            android:text="Helping is my passion" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/text_view_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="@string/your_amount"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+<TextView
+    android:id="@+id/text_view_enter"
+    android:layout_width="wrap_content"
+    android:textColor="@color/black"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/text_view_amount"
+    android:text="@string/please_enter_the_amount_you_want_to_give"/>
+
+    <EditText
+        android:id="@+id/edit_text_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_below="@+id/text_view_enter"
+        android:hint="@string/your_amount" />
+
+    <Button
+        android:id="@+id/btnDonateDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_text_amount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/round_donate_button"
+
+
+        android:paddingHorizontal="40dp"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+
+        android:textSize="18sp"
+        android:textStyle="bold"
+
+        />
+
+
+</RelativeLayout>

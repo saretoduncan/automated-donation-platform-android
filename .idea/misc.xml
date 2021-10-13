@@ -7,6 +7,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_baseline_insert_emoticon_24.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.15925925925925927" />
+<<<<<<< HEAD
+=======
+        <entry key="app/src/main/res/drawable/round_donate_button.xml" value="0.2046875" />
+>>>>>>> ft-donors
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/undraw_mobile_login_re_9ntv__1_.xml" value="0.15925925925925927" />
@@ -16,6 +20,11 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/beneficiary_list_item.xml" value="0.2930253623188406" />
+<<<<<<< HEAD
+=======
+        <entry key="app/src/main/res/layout/card_view.xml" value="0.18854166666666666" />
+        <entry key="app/src/main/res/layout/donation_display.xml" value="0.18854166666666666" />
+>>>>>>> ft-donors
         <entry key="app/src/main/res/layout/donor_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_beneficiaries.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_beneficiary_profile.xml" value="0.35572916666666665" />
