@@ -20,14 +20,9 @@
     android:layout_below="@+id/toolbar"/>
 
 
-
-
-
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
         android:id="@+id/navbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"

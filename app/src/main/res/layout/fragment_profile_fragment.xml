@@ -10,7 +10,7 @@
        android:id="@+id/pro_profile_pic"
        android:layout_width="100dp"
        android:layout_height="100dp"
-       android:src="@drawable/splashbg"
+       android:src="@drawable/splash"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="150dp"
        />
