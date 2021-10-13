@@ -1,7 +1,6 @@
-package com.moringa.automated_donation_platform_android.adapter;
+package com.moringa.automated_donation_platform_android.adapters;
 
 import android.app.Dialog;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,12 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moringa.automated_donation_platform_android.DonorsActivity;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
 
 import java.util.List;
-import java.util.concurrent.RunnableScheduledFuture;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

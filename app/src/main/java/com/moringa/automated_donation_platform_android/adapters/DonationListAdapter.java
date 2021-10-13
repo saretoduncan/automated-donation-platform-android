@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android.adapter;
+package com.moringa.automated_donation_platform_android.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
-
-import java.lang.invoke.LambdaConversionException;
 
 public class DonationListAdapter extends RecyclerView.Adapter<DonationListAdapter.DonationListViewHolder> {
     @NonNull
