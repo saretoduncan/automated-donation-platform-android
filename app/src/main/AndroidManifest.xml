@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name=".DonorsActivity"
+            android:name=".ui.DonorsActivity"
             android:exported="true" />
         <activity
             android:name=".ui.CharityActivity"

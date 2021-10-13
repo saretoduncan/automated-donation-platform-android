@@ -30,8 +30,9 @@
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/frame_layout.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_donation_dialog.xml" value="0.19791666666666666" />
-        <entry key="app/src/main/res/layout/toolbar.xml" value="0.19791666666666666" />
-        <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/item_menu.xml" value="0.35572916666666665" />
       </map>
     </option>
   </component>

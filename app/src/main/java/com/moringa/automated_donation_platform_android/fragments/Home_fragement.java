@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.adapter.CharityListAdapter;
+import com.moringa.automated_donation_platform_android.adapters.CharityListAdapter;
 
 import java.util.ArrayList;
 

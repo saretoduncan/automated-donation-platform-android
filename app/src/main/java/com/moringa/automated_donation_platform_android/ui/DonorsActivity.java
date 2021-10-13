@@ -1,4 +1,4 @@
-package com.moringa.automated_donation_platform_android;
+package com.moringa.automated_donation_platform_android.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +12,7 @@ import android.view.View;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.*;
 
 import butterknife.BindView;

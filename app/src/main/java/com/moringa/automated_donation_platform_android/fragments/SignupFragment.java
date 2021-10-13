@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
 import com.moringa.automated_donation_platform_android.ui.LoginActivity;
 import com.moringa.automated_donation_platform_android.ui.SignupActivity;
 
@@ -93,7 +94,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     }
 
     private void moveToNewActivity () {
-        Intent i = new Intent(getActivity(), LoginActivity.class);
+        Intent i = new Intent(getActivity(), DonorsActivity.class);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0, 0);
 

@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.adapter.DonationListAdapter;
+import com.moringa.automated_donation_platform_android.adapters.DonationListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
