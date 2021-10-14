@@ -6,20 +6,9 @@
     tools:context=".fragments.HomeFragment"
     android:background="@color/colorAccent">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_edittext"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
-
     <LinearLayout
         android:id="@+id/amountLayout"
         android:layout_width="wrap_content"
-        android:layout_below="@id/searchView"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:padding="20dp">

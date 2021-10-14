@@ -7,41 +7,15 @@
     tools:context=".ui.CharityActivity"
     android:background="@color/colorAccent">
 
-    <RelativeLayout
-        android:id="@+id/profileLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Media -->
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/splashbg"
-        />
-<!--        app:civ_border_color="#FF000000"-->
-<!--        app:civ_border_width="2dp"-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/profile_image"
-            android:fontFamily="@font/cousine"
-            android:text="Inua Dada Foundation"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+    <include layout="@layout/appbar"
+        android:id="@+id/toolbar" />
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:layout_below="@+id/profileLayout"
+        android:layout_below="@+id/toolbar"
         android:background="@color/colorAccent">
 
     </FrameLayout>

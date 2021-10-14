@@ -3,11 +3,13 @@ package com.moringa.automated_donation_platform_android.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CharityActivity extends AppCompatActivity {
-
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.bottomNavigation) BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,15 @@ public class CharityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_charity);
         ButterKnife.bind(this);
 
+        setSupportActionBar(toolbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new HomeFragment()).commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.top_menu,menu);
+        return true;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
