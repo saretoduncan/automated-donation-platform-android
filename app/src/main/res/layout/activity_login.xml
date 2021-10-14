@@ -45,6 +45,17 @@
         android:orientation="vertical"
         android:padding="30dp">
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:spinnerMode="dropdown" />
+
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
