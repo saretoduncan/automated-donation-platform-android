@@ -59,6 +59,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, DonorsActivity.class);
             startActivity(intent);
         }
+        if (v == mLoginBtn && category.equals("Admin")) {
+            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+            startActivity(intent);
+        }
 
         if (v == mSignup) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);

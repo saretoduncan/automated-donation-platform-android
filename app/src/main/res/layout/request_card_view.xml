@@ -7,34 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
+
         android:layout_marginHorizontal="10dp"
         app:cardCornerRadius="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="293dp"
+            android:paddingHorizontal="10dp">
 
 
             <TextView
+                android:id="@+id/organization_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="17dp"
-                android:id="@+id/organization_Name"
+                android:text="@string/inua_dada_foundation"
                 android:textColor="@color/black"
-                android:text="@string/inua_dada_foundation" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/organization_about"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/organization_Name"
-                android:textSize="18sp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
                 android:text="@string/this_year_sac_safeguarding_adolescent_and_child_health_project_focuses_on_addressing_issues_around_menstrual_hygiene_management_with_the_theme_improving_menstrual_health_management_among_teenage_girls"
-                />
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/organization_trustdeed"
@@ -57,26 +59,25 @@
 
                 android:layout_marginVertical="10dp"
                 android:layout_marginTop="10dp"
-              android:layout_toStartOf="@+id/accept"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/accept"
                 android:text="Reject"
-android:layout_marginEnd="10dp"
-                android:textStyle="bold"
                 android:textColor="@color/yellow"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-              android:id="@+id/accept"
-                android:text="Approve"
-                android:textStyle="bold"
-                android:layout_marginVertical="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="40dp"
                 android:layout_below="@+id/organization_trustdeed"
                 android:layout_alignParentEnd="true"
+                android:layout_marginVertical="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="Approve"
                 android:textColor="@color/colorPrimary"
-                />
+                android:textStyle="bold" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
