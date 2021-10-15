@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -63,13 +64,13 @@ View toolbar;
                         builder.setMessage("Do you really have to\n" +
                                 "log out?");
                         builder.setCancelable(true);
-                        builder.setNegativeButton("yes", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton(Html.fromHtml("<font color='#F6E11E'>Yes</font>"), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 finish();
                             }
                         });
-                        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(Html.fromHtml("<font color='#000000'>No</font>"), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
