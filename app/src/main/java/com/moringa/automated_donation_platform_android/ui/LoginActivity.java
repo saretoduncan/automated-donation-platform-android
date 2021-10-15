@@ -69,10 +69,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (v == mLoginBtn && category.equals("Donor") && isValidCredentials()) {
+            login();
             Intent intent = new Intent(LoginActivity.this, DonorsActivity.class);
             startActivity(intent);
         }
-        if (v == mLoginBtn && category.equals("Admin")) {
+        if (v == mLoginBtn && category.equals("Admin") && isValidCredentials()) {
+            login();
             Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
             startActivity(intent);
         }
