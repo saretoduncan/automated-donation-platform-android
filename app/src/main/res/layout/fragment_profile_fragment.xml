@@ -85,6 +85,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/phone"
@@ -109,6 +110,17 @@
             android:ems="10"
             android:text="Helping is my passion" />
     </LinearLayout>
-
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_profile"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button"
+        android:minWidth="150dip"
+        android:minHeight="35dip"
+        android:text="Update"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white" />
 
 </RelativeLayout>
