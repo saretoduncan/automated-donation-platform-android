@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapters.BeneficiaryListAdapter;
@@ -20,10 +21,14 @@ import com.moringa.automated_donation_platform_android.models.Donor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeneficiariesFragment extends Fragment {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class BeneficiariesFragment extends Fragment implements  View.OnClickListener{
 
     RecyclerView mRecyclerView;
     List<Beneficiary> mBeneficiaries;
+    @BindView(R.id.addBeneficiaryBtn) Button addBtn;
 
     public BeneficiariesFragment() {
         // Required empty public constructor
@@ -61,10 +66,21 @@ public class BeneficiariesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beneficiaries, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.beneficiaryList);
+        ButterKnife.bind(this,view);
+        addBtn.setOnClickListener(this);
+
         BeneficiaryListAdapter mAdapter = new BeneficiaryListAdapter(mBeneficiaries, getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == addBtn){
+            getFragmentManager().beginTransaction().replace(this.getId(),new AddBeneficiaryFragment()).commit();
+        }
+
     }
 }

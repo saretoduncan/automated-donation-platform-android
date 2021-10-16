@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/charity_organization_item.xml" value="0.15704154002026344" />
         <entry key="app/src/main/res/layout/donation_display.xml" value="0.25" />
         <entry key="app/src/main/res/layout/donor_list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_add_beneficiary.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_add_card.xml" value="0.14628623188405798" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.15704154002026344" />
         <entry key="app/src/main/res/layout/fragment_admin_request_fragment.xml" value="0.15" />
