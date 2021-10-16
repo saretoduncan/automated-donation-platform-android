@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.AddBeneficiaryFragment"
+    android:background="@color/colorAccent"
+    android:layout_centerVertical="true">
+
+    <RelativeLayout
+        android:id="@+id/infoLayout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/emailLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_boat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+
+            <EditText
+                android:id="@+id/entry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:layout_below="@id/entry"
+                android:layout_toRightOf="@+id/text_view_boat1"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textPersonName"
+                android:hint="Joanne Kims"
+                android:drawableEnd="@drawable/ic_baseline_edit_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/aboutLayout"
+            android:orientation="vertical"
+            android:layout_below="@id/emailLayout"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Testimonial: "
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true" />
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_toRightOf="@+id/text_view_about"
+                android:fillViewport="true">
+
+                <EditText
+                    android:id="@+id/editTextAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp"
+                    android:inputType="textMultiLine"
+                    android:background="@android:drawable/editbox_background"
+                    android:hint="To improve the life  opportunities of youth aged 10-24 through strategic empowerment for sustainable development."
+                    android:drawableEnd="@drawable/ic_baseline_edit_24" />
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/trustLayout"
+            android:orientation="vertical"
+            android:layout_below="@id/aboutLayout"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_trust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Profile Picture: "
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/text_view_trust"
+                android:background="@android:drawable/editbox_background"
+                android:drawableEnd="@drawable/ic_baseline_file_upload_24"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:text="Upload.."
+                android:textSize="20dp" />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/addBeneficiary"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:padding="8dp"
+            android:layout_below="@id/trustLayout"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="20dp"
+            app:cornerRadius="50dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
