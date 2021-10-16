@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.moringa.automated_donation_platform_android.R;
@@ -30,9 +31,14 @@ import butterknife.ButterKnife;
 public class SignupFragment extends Fragment implements  AdapterView.OnItemSelectedListener , View.OnClickListener {
     private String category;
     List<String> categories;
-    Button mSignup;
     CallbackFragment callbackFragment;
-    Spinner spinner;
+    @BindView(R.id.signUpButton) Button mSignup;
+    @BindView(R.id.spinner) Spinner spinner;
+    @BindView(R.id.nameTextView) EditText mName;
+    @BindView(R.id.emailEditText) EditText mEmail;
+    @BindView(R.id.passwordEditText) EditText mPassword;
+    @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
+
 
     public SignupFragment() {
         // Required empty public constructor
@@ -53,8 +59,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
-        mSignup = view.findViewById(R.id.signUpButton);
-        spinner = view.findViewById(R.id.spinner);
+        ButterKnife.bind(this,view);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item,categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
