@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.models.SignupRequest;
+import com.moringa.automated_donation_platform_android.models.SignupResponse;
+import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
 import com.moringa.automated_donation_platform_android.ui.LoginActivity;
 import com.moringa.automated_donation_platform_android.ui.SignupActivity;
@@ -26,6 +31,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class SignupFragment extends Fragment implements  AdapterView.OnItemSelectedListener , View.OnClickListener {
@@ -34,10 +42,11 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     CallbackFragment callbackFragment;
     @BindView(R.id.signUpButton) Button mSignup;
     @BindView(R.id.spinner) Spinner spinner;
-    @BindView(R.id.nameTextView) EditText mName;
+    @BindView(R.id.nameEditText) EditText mName;
     @BindView(R.id.emailEditText) EditText mEmail;
     @BindView(R.id.passwordEditText) EditText mPassword;
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
+    @BindView(R.id.phoneEditText) EditText mPhoneNumber;
 
 
     public SignupFragment() {
@@ -72,11 +81,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
     @Override
     public void onClick(View view) {
-        if(callbackFragment != null && category.equals("Charity")){
-            callbackFragment.changeFragment();
-        }else {
-            moveToNewActivity();
-        }
+        registerUser(validateUser());
     }
 
     public void setCallbackFragment(CallbackFragment callbackFragment){
@@ -104,4 +109,90 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         ((Activity) getActivity()).overridePendingTransition(0, 0);
 
     }
+
+    public void registerUser(SignupRequest signupRequest){
+        Call<SignupResponse> signupResponseCall = ApiClient.getUserService().userSignup(signupRequest);
+        signupResponseCall.enqueue(new Callback<SignupResponse>() {
+            @Override
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                if(response.isSuccessful()){
+                    if(callbackFragment != null && category.equals("Charity")){
+                        callbackFragment.changeFragment();
+                    }
+                    Toast.makeText(getContext(), "Authentication Successful", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(getContext(), "An error occured please try again later", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private SignupRequest validateUser(){
+        final String name = mName.getText().toString().trim();
+        final String phoneNumber = mPhoneNumber.getText().toString().trim();
+        final String email = mEmail.getText().toString().trim();
+        final String password = mPassword.getText().toString().trim();
+        final String confirmPassword = mConfirmPassword.getText().toString().trim();
+
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validPhoneNumber = isValidPhoneNumber(phoneNumber);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+
+        if (!validEmail || !validName || !validPhoneNumber || !validPassword) return null;
+
+        SignupRequest signupRequest = new SignupRequest();
+        signupRequest.setName(name);
+        signupRequest.setEmail(email);
+        signupRequest.setPhoneNumber(phoneNumber);
+        signupRequest.setCategory(category);
+
+        return signupRequest;
+    }
+
+    public boolean isValidEmail(String email){
+        boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if(!isGoodEmail){
+            mEmail.setError("Please enter a valid email address");
+            return false;
+        }else {
+            return isGoodEmail;
+        }
+    }
+
+    public boolean isValidName(String name){
+        if(name.equals("")){
+            mName.setError("Please enter your name");
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean isValidPhoneNumber(String phone){
+        if(phone.equals("")){
+            mPhoneNumber.setError("Please enter your phone number");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidPassword(String password, String confirmPassword){
+        if(password.length() < 6){
+            mPassword.setError("Please create a password containing at least 6 characters");
+            return false;
+        }else if(!password.equals(confirmPassword)){
+            mPassword.setError("Passwords do not match!");
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 }

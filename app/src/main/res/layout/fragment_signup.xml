@@ -55,6 +55,21 @@
             android:textColorHint="@color/colorDivider"
             android:textSize="20sp" />
 
+
+        <EditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Phone Number"
+            android:inputType="text"
+            android:nextFocusDown="@+id/passwordEditText"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorDivider"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
