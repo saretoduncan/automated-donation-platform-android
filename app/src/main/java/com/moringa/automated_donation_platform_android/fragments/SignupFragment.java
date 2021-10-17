@@ -16,12 +16,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.SignupRequest;
 import com.moringa.automated_donation_platform_android.models.SignupResponse;
+import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
 import com.moringa.automated_donation_platform_android.ui.LoginActivity;
@@ -48,7 +51,8 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.passwordEditText) EditText mPassword;
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
-    @BindView(R.id.uploadProfileImage) ImageView uploadImage;
+    @BindView(R.id.userImageView) ImageView profileImg;
+    @BindView(R.id.uploadProfileImage) RelativeLayout uploadImage;
 
 
     public SignupFragment() {
@@ -112,11 +116,11 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
     }
 
-    public void registerUser(SignupRequest signupRequest){
-        Call<SignupResponse> signupResponseCall = ApiClient.getUserService().userSignup(signupRequest);
-        signupResponseCall.enqueue(new Callback<SignupResponse>() {
+    public void registerUser(User signupRequest){
+        Call<User> signupResponseCall = ApiClient.getUserService().userSignup(signupRequest);
+        signupResponseCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     if(callbackFragment != null && category.equals("Charity")){
                         callbackFragment.changeFragment();
@@ -129,13 +133,13 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             }
 
             @Override
-            public void onFailure(Call<SignupResponse> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private SignupRequest validateUser(){
+    private User validateUser(){
         final String name = mName.getText().toString().trim();
         final String phoneNumber = mPhoneNumber.getText().toString().trim();
         final String email = mEmail.getText().toString().trim();
@@ -149,11 +153,11 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
         if (!validEmail || !validName || !validPhoneNumber || !validPassword) return null;
 
-        SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setName(name);
-        signupRequest.setEmail(email);
-        signupRequest.setPhoneNumber(phoneNumber);
-        signupRequest.setCategory(category);
+        User signupRequest = new User(name,email,password,category,phoneNumber,"https://images.unsplash.com/photo-1634294509705-87b207ef352e?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60");
+//        signupRequest.setName(name);
+//        signupRequest.setEmail(email);
+//        signupRequest.setPhoneNumber(phoneNumber);
+//        signupRequest.setCategory(category);
 
         return signupRequest;
     }

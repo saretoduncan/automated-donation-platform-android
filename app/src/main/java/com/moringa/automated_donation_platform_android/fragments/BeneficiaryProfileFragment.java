@@ -17,10 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BeneficiaryProfileFragment extends Fragment implements View.OnClickListener{
-    @BindView(R.id.beneficiaryNameEditText) EditText mName;
-    @BindView(R.id.testimonialEditText) EditText mTestimonial;
-    @BindView(R.id.beneficiaryImage) ImageView mProfile;
-    @BindView(R.id.addBeneficiary) Button mAddBtn;
+
 
     public BeneficiaryProfileFragment() {
         // Required empty public constructor
@@ -44,15 +41,8 @@ public class BeneficiaryProfileFragment extends Fragment implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        if(view == mProfile){
 
-        }
 
     }
 
-    public void addBeneficiary(){
-        String name = mName.getText().toString();
-        String testimonial = mTestimonial.getText().toString();
-
-    }
 }
