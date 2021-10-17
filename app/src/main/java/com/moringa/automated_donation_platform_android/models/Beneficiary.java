@@ -2,12 +2,30 @@ package com.moringa.automated_donation_platform_android.models;
 
 public class Beneficiary {
     private String name;
-    private String testimonial;
-    private int image;
+    private String testimony;
+    private String image;
+    private int id;
+    private int charityId;
 
-    public Beneficiary(String name, String testimonial, int image) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCharityId() {
+        return charityId;
+    }
+
+    public void setCharityId(int charityId) {
+        this.charityId = charityId;
+    }
+
+    public Beneficiary(String name, String testimony, String image) {
         this.name = name;
-        this.testimonial = testimonial;
+        this.testimony = testimony;
         this.image = image;
     }
 
@@ -22,19 +40,19 @@ public class Beneficiary {
         this.name = name;
     }
 
-    public String getTestimonial() {
-        return testimonial;
+    public String getTestimony() {
+        return testimony;
     }
 
-    public void setTestimonial(String testimonial) {
-        this.testimonial = testimonial;
+    public void setTestimony(String testimony) {
+        this.testimony = testimony;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

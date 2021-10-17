@@ -28,4 +28,9 @@ public class ApiClient {
         UserService userService = getRetrofit().create(UserService.class);
         return userService;
     }
+
+    public static BeneficiaryService getBeneficiaryService(){
+        BeneficiaryService beneficiaryService = getRetrofit().create(BeneficiaryService.class);
+        return beneficiaryService;
+    }
 }

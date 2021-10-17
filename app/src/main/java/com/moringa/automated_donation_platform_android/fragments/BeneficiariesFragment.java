@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,17 @@ import com.moringa.automated_donation_platform_android.adapters.BeneficiaryListA
 import com.moringa.automated_donation_platform_android.adapters.DonorListAdapter;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
 import com.moringa.automated_donation_platform_android.models.Donor;
+import com.moringa.automated_donation_platform_android.network.ApiClient;
+import com.moringa.automated_donation_platform_android.network.BeneficiaryService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BeneficiariesFragment extends Fragment implements  View.OnClickListener{
 
@@ -38,26 +44,26 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBeneficiaries = new ArrayList<>();
-        mBeneficiaries.add(new Beneficiary("Nelly Nayoma","“I can now concentrate in class, I find no reason to miss\n" +
-                " classes during my periods, I can stand in front of my \n" +
-                "classmates and solve a math problem, I have developed a love\n" +
-                " for soccer, and I can do all of this without thinking of my \n" +
-                "period when they arrive,” ", R.drawable.pic1));
-        mBeneficiaries.add(new Beneficiary("Akura rakera","“I can now concentrate in class, I find no reason to miss\n" +
-                " classes during my periods, I can stand in front of my \n" +
-                "classmates and solve a math problem, I have developed a love\n" +
-                " for soccer, and I can do all of this without thinking of my \n" +
-                "period when they arrive,” ",R.drawable.pic2));
-        mBeneficiaries.add(new Beneficiary("Clare Limo","“I can now concentrate in class, I find no reason to miss\n" +
-                " classes during my periods, I can stand in front of my \n" +
-                "classmates and solve a math problem, I have developed a love\n" +
-                " for soccer, and I can do all of this without thinking of my \n" +
-                "period when they arrive,” ",R.drawable.pic3));
-        mBeneficiaries.add(new Beneficiary("Duncan Moiyo","“I can now concentrate in class, I find no reason to miss\n" +
-                " classes during my periods, I can stand in front of my \n" +
-                "classmates and solve a math problem, I have developed a love\n" +
-                " for soccer, and I can do all of this without thinking of my \n" +
-                "period when they arrive,” ",R.drawable.pic4));
+//        mBeneficiaries.add(new Beneficiary("Nelly Nayoma","“I can now concentrate in class, I find no reason to miss\n" +
+//                " classes during my periods, I can stand in front of my \n" +
+//                "classmates and solve a math problem, I have developed a love\n" +
+//                " for soccer, and I can do all of this without thinking of my \n" +
+//                "period when they arrive,” ", R.drawable.pic1));
+//        mBeneficiaries.add(new Beneficiary("Akura rakera","“I can now concentrate in class, I find no reason to miss\n" +
+//                " classes during my periods, I can stand in front of my \n" +
+//                "classmates and solve a math problem, I have developed a love\n" +
+//                " for soccer, and I can do all of this without thinking of my \n" +
+//                "period when they arrive,” ",R.drawable.pic2));
+//        mBeneficiaries.add(new Beneficiary("Clare Limo","“I can now concentrate in class, I find no reason to miss\n" +
+//                " classes during my periods, I can stand in front of my \n" +
+//                "classmates and solve a math problem, I have developed a love\n" +
+//                " for soccer, and I can do all of this without thinking of my \n" +
+//                "period when they arrive,” ",R.drawable.pic3));
+//        mBeneficiaries.add(new Beneficiary("Duncan Moiyo","“I can now concentrate in class, I find no reason to miss\n" +
+//                " classes during my periods, I can stand in front of my \n" +
+//                "classmates and solve a math problem, I have developed a love\n" +
+//                " for soccer, and I can do all of this without thinking of my \n" +
+//                "period when they arrive,” ",R.drawable.pic4));
 
     }
 
@@ -69,6 +75,7 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
         ButterKnife.bind(this,view);
         addBtn.setOnClickListener(this);
 
+        getBeneficiaries();
         BeneficiaryListAdapter mAdapter = new BeneficiaryListAdapter(mBeneficiaries, getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
@@ -81,6 +88,31 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
         if(view == addBtn){
             getFragmentManager().beginTransaction().replace(this.getId(),new AddBeneficiaryFragment()).commit();
         }
+
+    }
+
+    public void getBeneficiaries(){
+        BeneficiaryService client = ApiClient.getBeneficiaryService();
+        Call<List<Beneficiary>> call =client.getBeneficiaries();
+        call.enqueue(new Callback<List<Beneficiary>>() {
+            @Override
+            public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
+                if(response.isSuccessful()){
+                    mBeneficiaries = response.body();
+                    for (Beneficiary beneficiary:mBeneficiaries) {
+                        Log.d("My beneficiaries",beneficiary.getName());
+                    }
+                    BeneficiaryListAdapter mAdapter = new BeneficiaryListAdapter(mBeneficiaries, getContext());
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mRecyclerView.setAdapter(mAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Beneficiary>> call, Throwable t) {
+
+            }
+        });
 
     }
 }

@@ -33,13 +33,12 @@
                 android:layout_alignParentTop="true"/>
 
             <EditText
-                android:id="@+id/entry"
+                android:id="@+id/beneficiaryNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:paddingLeft="10dp"
                 android:textSize="20dp"
-                android:layout_below="@id/entry"
                 android:layout_toRightOf="@+id/text_view_boat1"
                 android:background="@android:drawable/editbox_background"
                 android:inputType="textPersonName"
@@ -69,7 +68,7 @@
                 android:fillViewport="true">
 
                 <EditText
-                    android:id="@+id/editTextAbout"
+                    android:id="@+id/testimonialEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -101,7 +100,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/button"
+                android:id="@+id/beneficiaryImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/text_view_trust"

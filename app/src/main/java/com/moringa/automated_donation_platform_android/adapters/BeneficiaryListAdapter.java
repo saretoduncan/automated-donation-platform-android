@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,8 +39,9 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
     @Override
     public void onBindViewHolder(@NonNull BeneficiaryListAdapter.BeneficiaryViewHolder holder, int position) {
         holder.nameTxt.setText(mBeneficiary.get(position).getName());
-        holder.testimonialTxt.setText(mBeneficiary.get(position).getTestimonial());
-        holder.beneficiaryImage.setImageResource(mBeneficiary.get(position).getImage());
+        holder.testimonialTxt.setText(mBeneficiary.get(position).getTestimony());
+        String imageUrl = mBeneficiary.get(position).getImage();
+        Picasso.get().load(imageUrl).into(holder.beneficiaryImage);
     }
 
     @Override
