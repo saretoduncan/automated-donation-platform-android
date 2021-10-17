@@ -14,7 +14,7 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/cousine"
         android:text="Get Involved!"
         android:textSize="25dp"
@@ -28,7 +28,7 @@
         android:fontFamily="@font/cousine"
         android:text="You help a woman, you help a generation"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="15dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -37,9 +37,28 @@
         android:layout_below="@+id/imageView2"
         android:layout_alignBottom="@id/imageView2"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="2dp"
         android:orientation="vertical"
         android:padding="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadProfileImage">
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_baseline_person_24"/>
+            <TextView
+                android:id="@+id/uploadImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageView3"
+                android:text="Upload your profile picture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp" />
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/nameEditText"
@@ -53,7 +72,7 @@
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorDivider"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
 
         <EditText
@@ -68,7 +87,7 @@
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorDivider"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/emailEditText"
@@ -82,18 +101,18 @@
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorDivider"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp"
-            android:textSize="20sp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:textSize="15sp"
+            android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -106,7 +125,7 @@
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorDivider"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/confirmPasswordEditText"
@@ -120,18 +139,18 @@
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/colorDivider"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_button"
             android:padding="10dp"
             android:text="SignUp"
             android:textAllCaps="false"
             android:textColor="@color/colorTextIcons"
-            android:background="@drawable/rounded_button"
             android:textSize="25dp" />
 
         <TextView

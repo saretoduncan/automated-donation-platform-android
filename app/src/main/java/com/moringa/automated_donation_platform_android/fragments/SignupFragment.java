@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.passwordEditText) EditText mPassword;
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
+    @BindView(R.id.uploadProfileImage) ImageView uploadImage;
 
 
     public SignupFragment() {
@@ -74,7 +76,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-
+        uploadImage.setOnClickListener(this);
         mSignup.setOnClickListener(this);
         return view;
     }

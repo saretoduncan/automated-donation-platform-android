@@ -9,7 +9,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_insert_emoticon_24.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.21574074074074073" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.15925925925925927" />
+        <entry key="app/src/main/res/drawable/ic_round_monetization_on_24.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/image_overlay.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/round_donate_button.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/drawable/undraw_mobile_login_re_9ntv__1_.xml" value="0.15925925925925927" />

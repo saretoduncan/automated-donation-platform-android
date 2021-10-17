@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit = null;
-    public static final String BASE_URL = "https://water-records-api.herokuapp.com/";
+    public static final String BASE_URL = "https://automateddonationplatform.herokuapp.com/";
     public static Retrofit getRetrofit(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
