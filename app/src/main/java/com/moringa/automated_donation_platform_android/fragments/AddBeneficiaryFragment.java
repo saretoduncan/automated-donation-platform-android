@@ -66,7 +66,6 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         ButterKnife.bind(this,view);
 
         uploadImage.setOnClickListener(this);
-
         return view;
     }
 
@@ -86,7 +85,8 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
                     beneficiaries.add(response.body());
                     mBeneficiary = response.body();
                     Log.d("added beneficiary",mBeneficiary.getName());
-
+                    Toast.makeText(getContext(), "Beneficiary Added successfully", Toast.LENGTH_SHORT).show();
+                    getFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new BeneficiariesFragment()).commit();
                 }
             }
 

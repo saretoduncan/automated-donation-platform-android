@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,22 +64,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v == mLoginBtn && category.equals("Charity") && isValidCredentials()) {
+        if (v == mLoginBtn){
             login();
-            Intent intent = new Intent(LoginActivity.this, CharityActivity.class);
-            startActivity(intent);
         }
-
-        if (v == mLoginBtn && category.equals("Donor") && isValidCredentials()) {
-            login();
-            Intent intent = new Intent(LoginActivity.this, DonorsActivity.class);
-            startActivity(intent);
-        }
-        if (v == mLoginBtn && category.equals("Admin") && isValidCredentials()) {
-            login();
-            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-            startActivity(intent);
-        }
+//        if (v == mLoginBtn && category.equals("Charity") && isValidCredentials()) {
+//            login();
+//            Intent intent = ;new Intent(LoginActivity.this, CharityActivity.class);
+//            startActivity(intent)
+//        }
+//
+//        if (v == mLoginBtn && category.equals("Donor") && isValidCredentials()) {
+//            login();
+//            Intent intent = new Intent(LoginActivity.this, DonorsActivity.class);
+//            startActivity(intent);
+//        }
+//        if (v == mLoginBtn && category.equals("Admin") && isValidCredentials()) {
+//            login();
+//            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+//            startActivity(intent);
+//        }
 
         if (v == mSignup) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
@@ -114,6 +118,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
+                    Intent intent = null;
+                    switch(category) {
+                        case "Charity":
+                            intent = new Intent(LoginActivity.this, CharityActivity.class);
+                            startActivity(intent);
+                            break;
+                        case "Donor":
+                            intent = new Intent(LoginActivity.this, DonorsActivity.class);
+                            startActivity(intent);
+                            break;
+
+                        case "Admin":
+                            intent = new Intent(LoginActivity.this, AdminActivity.class);
+                            startActivity(intent);
+                    }
                 }else {
                     Toast.makeText(LoginActivity.this, "Login failed.",
                             Toast.LENGTH_SHORT).show();
