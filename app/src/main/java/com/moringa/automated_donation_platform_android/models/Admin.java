@@ -4,10 +4,10 @@ public class Admin {
 private int charityid;
 private boolean approval;
 private int id;
-    public Admin(int charityid, boolean approval, int id) {
+    public Admin(int charityid, boolean approval) {
         this.charityid = charityid;
         this.approval = approval;
-        this.id = id;
+
     }
 
     public int getCharityid() {

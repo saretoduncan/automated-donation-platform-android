@@ -2,7 +2,7 @@ package com.moringa.automated_donation_platform_android.models;
 
 import java.security.Timestamp;
 
-public class Donation {
+public class DonationModel {
     private int userid;
     private int charityid;
     private boolean anonymity;
@@ -10,14 +10,13 @@ public class Donation {
     private Timestamp reminderdate;
     private String paymentmode;
     private int id;
-    public Donation(int userid, int charityid, boolean anonymity, String frequency, Timestamp reminderdate, String paymentmode, int id) {
+    public DonationModel(int userid, int charityid, boolean anonymity, String frequency, Timestamp reminderdate, String paymentmode) {
         this.userid = userid;
         this.charityid = charityid;
         this.anonymity = anonymity;
         this.frequency = frequency;
         this.reminderdate = reminderdate;
         this.paymentmode = paymentmode;
-        this.id = id;
     }
 
     public int getUserid() {
