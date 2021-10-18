@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
+import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 
 import java.util.ArrayList;
@@ -101,14 +102,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void login(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail(email.getText().toString());
-        loginRequest.setPassword(password.getText().toString());
 
-        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+        String mail = email.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+
+        User loginRequest = new User(mail,pass,category);
+
+        Call<User> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
+        loginResponseCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
                 }else {
@@ -118,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "throwable"+ t.getLocalizedMessage(),
                         Toast.LENGTH_SHORT).show();
             }

@@ -17,10 +17,10 @@
         android:layout_centerVertical="true"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/splashbg"
+            android:src="@mipmap/ic_launcher_round"
             android:id="@+id/beneficiaryImageView">
 
         </ImageView>

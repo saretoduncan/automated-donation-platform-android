@@ -18,6 +18,12 @@ public class User {
         this.image = image;
     }
 
+    public User(String email, String password, String categories){
+        this.email = email;
+        this.password = password;
+        this.categories = categories;
+    }
+
     public String getName() {
         return name;
     }

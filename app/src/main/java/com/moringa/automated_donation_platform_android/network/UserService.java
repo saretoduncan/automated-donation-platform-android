@@ -10,11 +10,12 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
 
-    @POST("/api/users/new")
-    Call<LoginResponse> userLogin(@Body LoginRequest loginRequest);
+    @POST("api/users/login")
+    Call<User> userLogin(@Body User loginRequest);
 
     @POST("/api/users/register")
     Call<User> userSignup(@Body User signupRequest);

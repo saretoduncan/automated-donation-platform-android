@@ -24,12 +24,14 @@ import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapters.BeneficiaryListAdapter;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,7 +43,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     @BindView(R.id.beneficiaryImageView) ImageView mProfile;
     @BindView(R.id.beneficiaryImageUploadBtn) Button uploadImage;
     @BindView(R.id.addBeneficiary) Button mAddBtn;
-    Uri imageUrl = null;
+    private Uri imageUrl;
     private Beneficiary mBeneficiary;
     private static final int GALLERY_CODE = 71;
 
@@ -61,48 +63,45 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_beneficiary, container, false);
-//        uploadImage.setOnClickListener(this);
-//        uploadImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                System.out.println("Hi its me");
-//
-//
-//            }// end onClick
-//        });
+        ButterKnife.bind(this,view);
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onUpLoadImage();
+            }
+        });
         return view;
     }
 
-//
-//    public void addBeneficiary(){
-//        String name = mName.getText().toString();
-//        String testimonial = mTestimonial.getText().toString();
-//        String image = imageUrl.toString();
-//
-//        Beneficiary beneficiary = new Beneficiary(name,testimonial,image);
-//        Call<Beneficiary> call = ApiClient.getBeneficiaryService().addBeneficiary(1,beneficiary);
-//        call.enqueue(new Callback<Beneficiary>() {
-//            @Override
-//            public void onResponse(Call<Beneficiary> call, Response<Beneficiary> response) {
-//                if(response.isSuccessful()){
-//                    List<Beneficiary> beneficiaries = new ArrayList<>();
-//                    beneficiaries.add(response.body());
-//                    mBeneficiary = response.body();
-//                    Log.d("added beneficiary",mBeneficiary.getName());
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Beneficiary> call, Throwable t) {
-//
-//            }
-//        });
-//
-//
-//    }
-//
+
+    public void addBeneficiary(){
+        String name = mName.getText().toString();
+        String testimonial = mTestimonial.getText().toString();
+        String image = imageUrl.toString();
+
+        Beneficiary beneficiary = new Beneficiary(name,testimonial,image);
+        Call<Beneficiary> call = ApiClient.getBeneficiaryService().addBeneficiary(1,beneficiary);
+        call.enqueue(new Callback<Beneficiary>() {
+            @Override
+            public void onResponse(Call<Beneficiary> call, Response<Beneficiary> response) {
+                if(response.isSuccessful()){
+                    List<Beneficiary> beneficiaries = new ArrayList<>();
+                    beneficiaries.add(response.body());
+                    mBeneficiary = response.body();
+                    Log.d("added beneficiary",mBeneficiary.getName());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Beneficiary> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
     private void onUpLoadImage() {
         Intent takePictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
         takePictureIntent.setType("image/*");
@@ -112,30 +111,32 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
       if(view == uploadImage){
-//            onUpLoadImage();
+            onUpLoadImage();
         }
         if(view == mAddBtn){
-//            addBeneficiary();
+            addBeneficiary();
         }
 
     }
 
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == GALLERY_CODE && requestCode == Activity.RESULT_OK) {
-//            imageUrl = data.getData();
-//            mProfile.setImageURI(imageUrl);
-//            Toast.makeText(getContext(), "Image saved!!", Toast.LENGTH_LONG).show();
-//        }
-//        mAddBtn.setOnClickListener(this);
-//    }
-//
-//    public String getEncodedImage(Bitmap inImage) {
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//        String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), inImage, "Title", null);
-//        return path;
-//    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_CODE && requestCode == Activity.RESULT_OK) {
+            imageUrl = data.getData();
+
+            Picasso.get().load(imageUrl).into(mProfile);
+            Toast.makeText(getContext(), "Image saved!!", Toast.LENGTH_LONG).show();
+        }
+        mAddBtn.setOnClickListener(this);
+    }
+
+    public String getEncodedImage(Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), inImage, "Title", null);
+        return path;
+    }
 }

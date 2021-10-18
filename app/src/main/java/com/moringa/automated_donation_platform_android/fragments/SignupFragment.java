@@ -1,12 +1,16 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 
+import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +20,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.models.SignupRequest;
-import com.moringa.automated_donation_platform_android.models.SignupResponse;
 import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
-import com.moringa.automated_donation_platform_android.ui.LoginActivity;
-import com.moringa.automated_donation_platform_android.ui.SignupActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +50,10 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
     @BindView(R.id.userImageView) ImageView profileImg;
-    @BindView(R.id.uploadProfileImage) RelativeLayout uploadImage;
+    @BindView(R.id.uploadImg) Button uploadImage;
+    Uri imageUri = null;
+    String imagePath;
+    private static final int GALLERY_CODE = 71;
 
 
     public SignupFragment() {
@@ -81,13 +82,19 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         uploadImage.setOnClickListener(this);
-        mSignup.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void onClick(View view) {
-        registerUser(validateUser());
+        if(view == uploadImage){
+            onUpLoadImage();
+        }
+        if(view == mSignup){
+            registerUser(validateUser());
+        }
+
     }
 
     public void setCallbackFragment(CallbackFragment callbackFragment){
@@ -153,11 +160,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
         if (!validEmail || !validName || !validPhoneNumber || !validPassword) return null;
 
-        User signupRequest = new User(name,email,password,category,phoneNumber,"https://images.unsplash.com/photo-1634294509705-87b207ef352e?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60");
-//        signupRequest.setName(name);
-//        signupRequest.setEmail(email);
-//        signupRequest.setPhoneNumber(phoneNumber);
-//        signupRequest.setCategory(category);
+        User signupRequest = new User(name,email,password,category,phoneNumber, imagePath);
 
         return signupRequest;
     }
@@ -199,6 +202,39 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         }else {
             return true;
         }
+    }
+
+    private void onUpLoadImage() {
+        Intent takePictureIntent = new Intent(Intent.ACTION_PICK);
+        takePictureIntent.setType("image/*");
+        startActivityForResult(takePictureIntent,0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK ){
+            if(data == null){
+                Toast.makeText(getContext(), "Unable to choose image", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            imageUri = data.getData();
+            imagePath = getEncodedImage(imageUri);
+        }
+        mSignup.setOnClickListener(this);
+    }
+
+
+
+    public String getEncodedImage(Uri uri) {
+        String[] projections = {MediaStore.Images.Media.DATA};
+        CursorLoader cursorLoader = new CursorLoader(getActivity().getApplicationContext(),uri,projections,null,null,null);
+        Cursor cursor = cursorLoader.loadInBackground();
+        int col_idx = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(col_idx);
+        cursor.close();
+        return result;
     }
 
 }
