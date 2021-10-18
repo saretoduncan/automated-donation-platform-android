@@ -49,7 +49,6 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.passwordEditText) EditText mPassword;
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
-    @BindView(R.id.userImageView) ImageView profileImg;
     @BindView(R.id.uploadImg) Button uploadImage;
     Uri imageUri = null;
     String imagePath;
@@ -224,8 +223,6 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         mSignup.setOnClickListener(this);
     }
 
-
-
     public String getEncodedImage(Uri uri) {
         String[] projections = {MediaStore.Images.Media.DATA};
         CursorLoader cursorLoader = new CursorLoader(getActivity().getApplicationContext(),uri,projections,null,null,null);
@@ -236,5 +233,4 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         cursor.close();
         return result;
     }
-
 }

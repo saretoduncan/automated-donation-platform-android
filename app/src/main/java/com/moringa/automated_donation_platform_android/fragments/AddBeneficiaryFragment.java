@@ -2,13 +2,15 @@ package com.moringa.automated_donation_platform_android.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +19,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.adapters.BeneficiaryListAdapter;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.squareup.picasso.Picasso;
@@ -43,9 +43,9 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     @BindView(R.id.beneficiaryImageView) ImageView mProfile;
     @BindView(R.id.beneficiaryImageUploadBtn) Button uploadImage;
     @BindView(R.id.addBeneficiary) Button mAddBtn;
-    private Uri imageUrl;
+    private Uri imageUri;
+    private String imagePath;
     private Beneficiary mBeneficiary;
-    private static final int GALLERY_CODE = 71;
 
 
     public AddBeneficiaryFragment() {
@@ -64,12 +64,9 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_beneficiary, container, false);
         ButterKnife.bind(this,view);
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onUpLoadImage();
-            }
-        });
+
+        uploadImage.setOnClickListener(this);
+
         return view;
     }
 
@@ -77,7 +74,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     public void addBeneficiary(){
         String name = mName.getText().toString();
         String testimonial = mTestimonial.getText().toString();
-        String image = imageUrl.toString();
+        String image = imagePath;
 
         Beneficiary beneficiary = new Beneficiary(name,testimonial,image);
         Call<Beneficiary> call = ApiClient.getBeneficiaryService().addBeneficiary(1,beneficiary);
@@ -103,9 +100,9 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     }
 
     private void onUpLoadImage() {
-        Intent takePictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent takePictureIntent = new Intent(Intent.ACTION_PICK);
         takePictureIntent.setType("image/*");
-        startActivityForResult(takePictureIntent,GALLERY_CODE);
+        startActivityForResult(takePictureIntent,0);
     }
 
     @Override
@@ -116,27 +113,32 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         if(view == mAddBtn){
             addBeneficiary();
         }
-
     }
 
-
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GALLERY_CODE && requestCode == Activity.RESULT_OK) {
-            imageUrl = data.getData();
-
-            Picasso.get().load(imageUrl).into(mProfile);
-            Toast.makeText(getContext(), "Image saved!!", Toast.LENGTH_LONG).show();
+        if(resultCode == Activity.RESULT_OK ){
+            if(data == null){
+                Toast.makeText(getContext(), "Unable to choose image", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            imageUri = data.getData();
+            imagePath = getEncodedImage(imageUri);
+            mProfile.setImageURI(imageUri);
+            Toast.makeText(getContext(), "Image upload successful", Toast.LENGTH_SHORT).show();
         }
         mAddBtn.setOnClickListener(this);
     }
 
-    public String getEncodedImage(Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), inImage, "Title", null);
-        return path;
+    public String getEncodedImage(Uri uri) {
+        String[] projections = {MediaStore.Images.Media.DATA};
+        CursorLoader cursorLoader = new CursorLoader(getActivity().getApplicationContext(),uri,projections,null,null,null);
+        Cursor cursor = cursorLoader.loadInBackground();
+        int col_idx = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(col_idx);
+        cursor.close();
+        return result;
     }
 }
