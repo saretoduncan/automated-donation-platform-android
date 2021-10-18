@@ -1,6 +1,7 @@
 package com.moringa.automated_donation_platform_android.network;
 
 import com.moringa.automated_donation_platform_android.models.DonationModel;
+import com.moringa.automated_donation_platform_android.models.charityModel;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public interface DonationService {
     Call<List<DonationModel>> getAllDonationPerCharity( // get all donations per charity
             @Query("charityId") String charityId
     );
+    @GET("api/donations/charities/all")
+    Call <List<charityModel>> getAllCharities();
 
 
 

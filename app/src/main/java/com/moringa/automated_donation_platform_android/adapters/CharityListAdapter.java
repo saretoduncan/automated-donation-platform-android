@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
+import com.moringa.automated_donation_platform_android.models.charityModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,17 +27,23 @@ import butterknife.ButterKnife;
 
 public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.charityViewHolder> {
  private Context context;
-private List<String> convert;
+
+
+//    private ArrayList<String> convert;
  private boolean isShow=false;
     Dialog donationDialog;
+    List<charityModel>convert;
     EditText edAmount;
     Button btnDonateDialog ;
     String name;
 
 
-    public CharityListAdapter(Context context, List<String> convert) {
+    public CharityListAdapter(Context context, List<charityModel>convert) {
         this.context = context;
         this.convert= convert;
+    }
+    public void setConvert(List<charityModel> convert) {
+        this.convert = convert;
     }
 
     @NonNull
@@ -50,7 +58,7 @@ private List<String> convert;
 
     @Override
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
-    holder.charityProfileName.setText(this.convert.get(position));
+    holder.charityProfileName.setText(this.convert.get(position).getName());
     String charityName = holder.charityProfileName.getText().toString();
 
 
@@ -78,7 +86,8 @@ private List<String> convert;
     @Override
     public int getItemCount() {
 
-            return this.convert.size();
+            return convert.size();
+
 
 
     }
