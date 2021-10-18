@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.BeneficiaryProfileFragment"
+    tools:context=".fragments.CharityProfileFragment"
     android:background="@color/colorAccent">
 
     <RelativeLayout
@@ -32,18 +32,18 @@
                 android:layout_alignParentTop="true"/>
 
             <EditText
-                android:id="@+id/entry"
+                android:id="@+id/charityEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:paddingLeft="10dp"
-                android:textSize="20dp"
-                android:layout_below="@id/entry"
+                android:layout_below="@id/charityEmailEditText"
                 android:layout_toRightOf="@+id/text_view_boat1"
                 android:background="@android:drawable/editbox_background"
-                android:inputType="textPersonName"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:ems="10"
                 android:hint="inua.dada@dada.org"
-                android:drawableEnd="@drawable/ic_baseline_edit_24" />
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:textSize="20dp" />
         </RelativeLayout>
 
 
@@ -63,18 +63,17 @@
                 android:layout_alignParentLeft="true" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/charityPhoneNumberEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:paddingLeft="10dp"
-                android:textSize="20dp"
                 android:layout_toRightOf="@+id/text_view_boat2"
                 android:background="@android:drawable/editbox_background"
-                android:inputType="textPersonName"
-                android:hint="020-0011029394"
                 android:drawableEnd="@drawable/ic_baseline_edit_24"
-                />
+                android:ems="10"
+                android:hint="020-0011029394"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:textSize="20dp" />
         </RelativeLayout>
 
 
@@ -92,24 +91,25 @@
                 android:text="About Us: "
                 android:textSize="20dp"
                 android:layout_alignParentLeft="true" />
+
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_toRightOf="@+id/text_view_about"
+                android:layout_weight="1"
                 android:fillViewport="true">
 
                 <EditText
-                    android:id="@+id/editTextAbout"
+                    android:id="@+id/charityAboutEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:paddingLeft="10dp"
-                    android:textSize="20dp"
-                    android:inputType="textMultiLine"
                     android:background="@android:drawable/editbox_background"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
+                    android:ems="10"
                     android:hint="To improve the life  opportunities of youth aged 10-24 through strategic empowerment for sustainable development."
-                    android:drawableEnd="@drawable/ic_baseline_edit_24" />
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
 
             </ScrollView>
 
@@ -129,11 +129,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="Trust Deed: "
+                android:layout_centerVertical="true"
                 android:textSize="20dp" />
 
 
-            <TextView
-                android:id="@+id/button"
+            <Button
+                android:id="@+id/trustDeedBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/text_view_trust"
@@ -143,7 +144,8 @@
                 android:padding="5dp"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                android:text=" Trust Deed .."
+                android:textAllCaps="false"
+                android:hint=" Trust Deed .."
                 android:textSize="20dp" />
         </RelativeLayout>
         <Button

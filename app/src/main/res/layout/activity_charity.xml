@@ -7,8 +7,9 @@
     tools:context=".ui.CharityActivity"
     android:background="@color/colorAccent">
 
-    <include layout="@layout/appbar"
-        android:id="@+id/toolbar" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/appbar" />
 
     <FrameLayout
         android:id="@+id/fragmentContainer"

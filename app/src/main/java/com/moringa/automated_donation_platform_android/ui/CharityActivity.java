@@ -11,12 +11,16 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.BeneficiariesFragment;
 import com.moringa.automated_donation_platform_android.fragments.HomeFragment;
-import com.moringa.automated_donation_platform_android.fragments.BeneficiaryProfileFragment;
+import com.moringa.automated_donation_platform_android.fragments.CharityProfileFragment;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,11 +28,19 @@ import butterknife.ButterKnife;
 public class CharityActivity extends AppCompatActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.bottomNavigation) BottomNavigationView bottomNav;
+    TextView mCharityName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity);
         ButterKnife.bind(this);
+        mCharityName = (TextView) toolbar.findViewById(R.id.charityName);
+
+        SessionManager sessionManager = new SessionManager(this);
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String name = userDetails.get(SessionManager.KEY_NAME);
+        mCharityName.setText(name);
 
         setSupportActionBar(toolbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -53,7 +65,7 @@ public class CharityActivity extends AppCompatActivity {
                     selectedFragment = new BeneficiariesFragment();
                     break;
                 case R.id.navProfile:
-                    selectedFragment = new BeneficiaryProfileFragment();
+                    selectedFragment = new CharityProfileFragment();
                     break;
                 case R.id.navLogout:
                     AlertDialog.Builder builder = new AlertDialog.Builder(CharityActivity.this);

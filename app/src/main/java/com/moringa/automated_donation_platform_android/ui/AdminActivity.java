@@ -13,9 +13,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
-import com.moringa.automated_donation_platform_android.fragments.BeneficiariesFragment;
-import com.moringa.automated_donation_platform_android.fragments.BeneficiaryProfileFragment;
-import com.moringa.automated_donation_platform_android.fragments.HomeFragment;
 import com.moringa.automated_donation_platform_android.fragments.admin_home_fragment;
 import com.moringa.automated_donation_platform_android.fragments.admin_request_fragment;
 

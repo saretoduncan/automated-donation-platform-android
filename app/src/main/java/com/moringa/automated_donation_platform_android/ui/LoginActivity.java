@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
 import com.moringa.automated_donation_platform_android.models.User;
@@ -67,23 +68,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v == mLoginBtn){
             login();
         }
-//        if (v == mLoginBtn && category.equals("Charity") && isValidCredentials()) {
-//            login();
-//            Intent intent = ;new Intent(LoginActivity.this, CharityActivity.class);
-//            startActivity(intent)
-//        }
-//
-//        if (v == mLoginBtn && category.equals("Donor") && isValidCredentials()) {
-//            login();
-//            Intent intent = new Intent(LoginActivity.this, DonorsActivity.class);
-//            startActivity(intent);
-//        }
-//        if (v == mLoginBtn && category.equals("Admin") && isValidCredentials()) {
-//            login();
-//            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-//            startActivity(intent);
-//        }
-
         if (v == mSignup) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
@@ -118,6 +102,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
+                    User user = response.body();
+                    SessionManager sessionManager = new SessionManager(LoginActivity.this);
+
+                    sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
+
                     Intent intent = null;
                     switch(category) {
                         case "Charity":

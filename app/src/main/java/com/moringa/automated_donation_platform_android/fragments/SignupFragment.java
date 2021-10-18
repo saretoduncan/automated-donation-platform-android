@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
@@ -50,6 +51,8 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPassword;
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
     @BindView(R.id.uploadImg) Button uploadImage;
+    @BindView(R.id.loginTextView) TextView loginPage;
+
     Uri imageUri = null;
     String imagePath;
     private static final int GALLERY_CODE = 71;
