@@ -12,11 +12,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface BeneficiaryService {
+public interface  BeneficiaryService {
     @POST("api/beneficiary/{charityId}/new")
     Call<Beneficiary> addBeneficiary(@Path("charityId") int charityId, @Body Beneficiary beneficiary);
 
     @GET("api/beneficiaries")
     Call<List<Beneficiary>> getBeneficiaries();
+
 
 }
