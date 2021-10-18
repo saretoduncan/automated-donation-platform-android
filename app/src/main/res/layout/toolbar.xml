@@ -10,15 +10,16 @@
         android:padding="12dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage"
+            android:id="@+id/donorProfileImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/splashbg" />
 
         <TextView
+            android:id="@+id/donorNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/profileImage"
+            android:layout_toEndOf="@id/donorProfileImage"
             android:fontFamily="@font/cousine"
             android:padding="10dp"
             android:text="Jemimah"

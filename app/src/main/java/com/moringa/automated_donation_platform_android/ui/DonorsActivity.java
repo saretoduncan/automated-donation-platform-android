@@ -10,21 +10,24 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.*;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DonorsActivity extends AppCompatActivity {
 
-@BindView(R.id.navbar)
-    BottomNavigationView bottomNav;
-@BindView(R.id.toolbar)
-View toolbar;
+    @BindView(R.id.navbar) BottomNavigationView bottomNav;
+    @BindView(R.id.toolbar) View toolbar;
+    TextView mDonorName;
 
     Home_fragement home_fragement;
 
@@ -34,6 +37,15 @@ View toolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donors);
         ButterKnife.bind(this);
+        mDonorName = (TextView) toolbar.findViewById(R.id.donorNameTextView);
+
+
+        SessionManager sessionManager = new SessionManager(this);
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String name = userDetails.get(SessionManager.KEY_NAME);
+        mDonorName.setText(name);
+
+
         home_fragement= new Home_fragement();
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
         bottomNav.setOnNavigationItemSelectedListener(navListener);// listen to navigation bar button click
