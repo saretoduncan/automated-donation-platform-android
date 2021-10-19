@@ -53,8 +53,9 @@ public class BeneficiaryListAdapter extends RecyclerView.Adapter<BeneficiaryList
         String imageUrl = mBeneficiary.get(position).getImage();
 //        Picasso.get().load(imageUrl).into(holder.beneficiaryImage);
         try {
-            imageDisplay(imageUrl,holder.beneficiaryImage);
-        } catch (IOException e) {
+            Picasso.get().load(imageUrl).into(holder.beneficiaryImage);
+//            imageDisplay(imageUrl,holder.beneficiaryImage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
