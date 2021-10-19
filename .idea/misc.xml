@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.365625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15925925925925927" />
+        <entry key="app/src/main/res/drawable/card_border.xml" value="0.2351851851851852" />
+        <entry key="app/src/main/res/drawable/edit_border.xml" value="0.2351851851851852" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_baseline_insert_emoticon_24.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.21574074074074073" />
@@ -41,10 +43,10 @@
         <entry key="app/src/main/res/layout/fragment_donation_list_fragment.xml" value="0.15704154002026344" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_home_fragement.xml" value="0.19791666666666666" />
-        <entry key="app/src/main/res/layout/fragment_payment__method.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/fragment_payment__method.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1859375" />
         <entry key="app/src/main/res/layout/fragment_profile_fragment.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.5" />
         <entry key="app/src/main/res/layout/frame_layout.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_donation_dialog.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/master_card.xml" value="0.15704154002026344" />

@@ -104,6 +104,47 @@
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
         android:text="+ Add Card" />
+    <RadioGroup
+        android:id="@+id/radioGender"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/donationAmount"
+       >
+
+        <RadioButton
+            android:id="@+id/radioAnonymous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+
+            android:buttonTint="@color/colorPrimary"
+            android:text="Anonymous" />
+        <RadioButton
+            android:id="@+id/radioNonAnonymous"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:checked="false"
+            android:text="NonAnonymous" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinner_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/radioGender"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/edit_border"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        android:textSize="15sp"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/total_amount"
@@ -121,12 +162,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/pay_button"
-        android:layout_marginBottom="20dp"
-android:textStyle="bold"
         android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
         android:text="ksh 2000"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/pay_button"

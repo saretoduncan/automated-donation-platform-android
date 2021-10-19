@@ -1,6 +1,7 @@
 package com.moringa.automated_donation_platform_android.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentFactory;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
+import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
 import com.moringa.automated_donation_platform_android.models.User;
@@ -119,7 +121,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(intent);
                             break;
                         case "Donor":
+//
                             intent = new Intent(LoginActivity.this, DonorsActivity.class);
+                            intent.putExtra("userID", Integer.toString(user.getId()));//get user id
                             startActivity(intent);
                             break;
 

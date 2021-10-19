@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
+import com.moringa.automated_donation_platform_android.models.charityModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,17 +27,26 @@ import butterknife.ButterKnife;
 
 public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.charityViewHolder> {
  private Context context;
-private List<String> convert;
+
+
+//    private ArrayList<String> convert;
  private boolean isShow=false;
     Dialog donationDialog;
+    List<charityModel>convert;
     EditText edAmount;
     Button btnDonateDialog ;
     String name;
+    String charityId;
+    String userId;
 
 
-    public CharityListAdapter(Context context, List<String> convert) {
+    public CharityListAdapter(Context context, List<charityModel> convert, String userId) {
         this.context = context;
         this.convert= convert;
+        this.userId = userId;
+    }
+    public void setConvert(List<charityModel> convert) {
+        this.convert = convert;
     }
 
     @NonNull
@@ -50,8 +61,11 @@ private List<String> convert;
 
     @Override
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
-    holder.charityProfileName.setText(this.convert.get(position));
+    holder.charityProfileName.setText(this.convert.get(position).getName());
     String charityName = holder.charityProfileName.getText().toString();
+    String id  = Integer.toString(this.convert.get(position).getId());
+
+
 
 
 
@@ -62,7 +76,8 @@ private List<String> convert;
                 donationDialog.show();
                 isShow=true;
                 name= charityName;
-                Toast.makeText(view.getContext(),  charityName, Toast.LENGTH_SHORT).show();
+                charityId =  id;
+                Toast.makeText(view.getContext(),  id, Toast.LENGTH_SHORT).show();
 
 
             }
@@ -78,7 +93,8 @@ private List<String> convert;
     @Override
     public int getItemCount() {
 
-            return this.convert.size();
+            return convert.size();
+
 
 
     }
@@ -89,10 +105,11 @@ private List<String> convert;
         @BindView(R.id.btnDonate)
         Button donateBtn;
 
-
         public charityViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind( this, itemView);
+
+
             btnDonateDialog = (Button) donationDialog.findViewById(R.id.btnDonateDialog);
             btnDonateDialog.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,6 +121,8 @@ private List<String> convert;
                         Bundle bundle = new Bundle();
                         bundle.putString("profileName", name);
                         bundle.putString("amount", amountDonated);
+                        bundle.putString("charityId", charityId);
+                        bundle.putString("userId", userId);
                         Payment_Method payment_method = new Payment_Method();
                         payment_method.setArguments(bundle);
 

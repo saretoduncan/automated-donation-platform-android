@@ -33,4 +33,9 @@ public class ApiClient {
         BeneficiaryService beneficiaryService = getRetrofit().create(BeneficiaryService.class);
         return beneficiaryService;
     }
+    public static  DonationService getDonationService(){
+        DonationService donationService = getRetrofit().create(DonationService.class);
+        return donationService;
+    }
+
 }

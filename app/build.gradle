@@ -56,4 +56,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
     implementation 'com.cloudinary:cloudinary-android:1.30.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }
