@@ -16,7 +16,7 @@ public class Charity {
         this.donorId = donorId;
     }
 
-    public Charity(String description, String trustDeed, String image, int userId) {
+    public Charity(String description, String trustDeed, int userId) {
         this.description = description;
         this.trustDeed = trustDeed;
         this.image = image;

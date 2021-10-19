@@ -29,9 +29,11 @@ import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
+import com.moringa.automated_donation_platform_android.ui.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,8 +108,6 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-
         }
     }
 
@@ -144,6 +144,9 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     if(callbackFragment != null && category.equals("Charity")){
+                        User user = response.body();
+                        SessionManager sessionManager = new SessionManager(getContext());
+                        sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
                         callbackFragment.changeFragment();
                     }
                     Toast.makeText(getContext(), "Authentication Successful", Toast.LENGTH_SHORT).show();

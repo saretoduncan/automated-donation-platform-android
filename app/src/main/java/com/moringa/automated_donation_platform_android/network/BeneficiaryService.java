@@ -16,6 +16,6 @@ public interface  BeneficiaryService {
     @POST("api/beneficiary/{charityId}/new")
     Call<Beneficiary> addBeneficiary(@Path("charityId") int charityId, @Body Beneficiary beneficiary);
 
-    @GET("api/beneficiaries")
-    Call<List<Beneficiary>> getBeneficiaries();
+    @GET("api/beneficiaries/{charityId}")
+    Call<List<Beneficiary>> getBeneficiariesForACharity(@Path("charityId") int charityId);
 }

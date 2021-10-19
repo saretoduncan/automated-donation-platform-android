@@ -9,6 +9,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface CharityService {
-    @POST("api/charity/{userId}/new")
+    @POST("api/charity/{userId}")
     Call<Charity> addCharity(@Path("userId") int userId, @Body Charity charity);
 }

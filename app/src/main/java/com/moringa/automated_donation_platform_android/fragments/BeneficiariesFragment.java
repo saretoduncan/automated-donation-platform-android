@@ -3,7 +3,6 @@ package com.moringa.automated_donation_platform_android.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.adapters.BeneficiaryListAdapter;
-import com.moringa.automated_donation_platform_android.adapters.DonorListAdapter;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
-import com.moringa.automated_donation_platform_android.models.Donor;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.network.BeneficiaryService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +34,7 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
     RecyclerView mRecyclerView;
     List<Beneficiary> mBeneficiaries;
     @BindView(R.id.addBeneficiaryBtn) Button addBtn;
+    private int charityId;
 
     public BeneficiariesFragment() {
         // Required empty public constructor
@@ -73,13 +73,18 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
         View view = inflater.inflate(R.layout.fragment_beneficiaries, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.beneficiaryList);
         ButterKnife.bind(this,view);
-        addBtn.setOnClickListener(this);
+
+        SessionManager sessionManager = new SessionManager(getContext());
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String id = userDetails.get(SessionManager.KEY_ID);
+        charityId = Integer.parseInt(id);
+
 
         getBeneficiaries();
         BeneficiaryListAdapter mAdapter = new BeneficiaryListAdapter(mBeneficiaries, getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-
+        addBtn.setOnClickListener(this);
         return view;
     }
 
@@ -93,7 +98,7 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
 
     public void getBeneficiaries(){
         BeneficiaryService client = ApiClient.getBeneficiaryService();
-        Call<List<Beneficiary>> call =client.getBeneficiaries();
+        Call<List<Beneficiary>> call =client.getBeneficiariesForACharity(charityId);
         call.enqueue(new Callback<List<Beneficiary>>() {
             @Override
             public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {

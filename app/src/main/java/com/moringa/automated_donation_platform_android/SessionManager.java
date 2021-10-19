@@ -21,6 +21,9 @@ public class SessionManager {
     public static final String KEY_CATEGORY = "category";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_ID = "id";
+    public static final String KEY_CHARITYID = "charityId";
+    public static final String KEY_BIO = "bio";
+    public static final String KEY_TRUSTDEED = "trustdeed";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -49,6 +52,24 @@ public class SessionManager {
         userData.put(KEY_CATEGORY,usersSession.getString(KEY_CATEGORY,null));
         userData.put(KEY_IMAGE,usersSession.getString(KEY_IMAGE,null));
         userData.put(KEY_ID,usersSession.getString(KEY_ID,null));
+
+        return userData;
+    }
+
+    public void createCharitySession(String description,String trustDeed, String id){
+        editor.putString(KEY_BIO,description);
+        editor.putString(KEY_TRUSTDEED,trustDeed);
+        editor.putString(KEY_CHARITYID,id);
+
+        editor.commit();
+    }
+
+    public HashMap<String,String> getCharityDetailsFromSession(){
+        HashMap<String,String> userData = new HashMap<>();
+
+        userData.put(KEY_BIO,usersSession.getString(KEY_BIO,null));
+        userData.put(KEY_TRUSTDEED,usersSession.getString(KEY_TRUSTDEED,null));
+        userData.put(KEY_CHARITYID,usersSession.getString(KEY_CHARITYID,null));
 
         return userData;
     }
