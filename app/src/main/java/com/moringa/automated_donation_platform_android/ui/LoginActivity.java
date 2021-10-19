@@ -116,12 +116,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(intent);
                             break;
                         case "Donor":
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("usersId", Integer.toString(user.getId()));
-//                            Payment_Method payment_method = new Payment_Method();
-//                            payment_method.setArguments(bundle);
+//
                             intent = new Intent(LoginActivity.this, DonorsActivity.class);
-                            intent.putExtra("userID", Integer.toString(user.getId()));
+                            intent.putExtra("userID", Integer.toString(user.getId()));//get user id
                             startActivity(intent);
                             break;
 

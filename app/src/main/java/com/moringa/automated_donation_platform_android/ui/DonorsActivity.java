@@ -50,8 +50,8 @@ public class DonorsActivity extends AppCompatActivity {
 
 
         home_fragement= new Home_fragement();
-        String userId = getIntent().getStringExtra("userID");
-        Toast.makeText(DonorsActivity.this, userId, Toast.LENGTH_SHORT).show();
+        String userId = getIntent().getStringExtra("userID");//get userid
+
         Bundle bundle = new Bundle();
         bundle.putString("usersId", userId);
         home_fragement.setArguments(bundle);
