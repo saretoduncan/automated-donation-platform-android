@@ -18,6 +18,4 @@ public interface  BeneficiaryService {
 
     @GET("api/beneficiaries")
     Call<List<Beneficiary>> getBeneficiaries();
-
-
 }

@@ -38,4 +38,8 @@ public class ApiClient {
         return donationService;
     }
 
+    public static  CharityService getCharityService(){
+        CharityService charityService = getRetrofit().create(CharityService.class);
+        return charityService;
+    }
 }
