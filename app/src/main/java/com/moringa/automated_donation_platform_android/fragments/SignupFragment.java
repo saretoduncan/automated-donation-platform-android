@@ -109,7 +109,6 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
 
 
         }
-
     }
 
     public void setCallbackFragment(CallbackFragment callbackFragment){

@@ -19,16 +19,19 @@ import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.BeneficiariesFragment;
 import com.moringa.automated_donation_platform_android.fragments.HomeFragment;
 import com.moringa.automated_donation_platform_android.fragments.CharityProfileFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CharityActivity extends AppCompatActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.bottomNavigation) BottomNavigationView bottomNav;
     TextView mCharityName;
+    CircleImageView mProfilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,19 @@ public class CharityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_charity);
         ButterKnife.bind(this);
         mCharityName = (TextView) toolbar.findViewById(R.id.charityName);
+        mProfilePicture = (CircleImageView) toolbar.findViewById(R.id.charity_profile_image);
 
         SessionManager sessionManager = new SessionManager(this);
         HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
         String name = userDetails.get(SessionManager.KEY_NAME);
+        String image = userDetails.get(SessionManager.KEY_IMAGE);
+
         mCharityName.setText(name);
+        try {
+            Picasso.get().load(image).into(mProfilePicture);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         setSupportActionBar(toolbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
