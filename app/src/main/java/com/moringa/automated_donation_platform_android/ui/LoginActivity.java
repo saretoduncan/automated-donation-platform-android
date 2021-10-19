@@ -111,7 +111,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
                     User user = response.body();
                     SessionManager sessionManager = new SessionManager(LoginActivity.this);
-
                     sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
 
                     Intent intent = null;
