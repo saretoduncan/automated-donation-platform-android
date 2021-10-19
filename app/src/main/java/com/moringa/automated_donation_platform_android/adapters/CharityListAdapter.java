@@ -36,11 +36,14 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
     EditText edAmount;
     Button btnDonateDialog ;
     String name;
+    String charityId;
+    String userId;
 
 
-    public CharityListAdapter(Context context, List<charityModel>convert) {
+    public CharityListAdapter(Context context, List<charityModel> convert, String userId) {
         this.context = context;
         this.convert= convert;
+        this.userId = userId;
     }
     public void setConvert(List<charityModel> convert) {
         this.convert = convert;
@@ -60,6 +63,9 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
     holder.charityProfileName.setText(this.convert.get(position).getName());
     String charityName = holder.charityProfileName.getText().toString();
+    String id  = Integer.toString(this.convert.get(position).getId());
+
+
 
 
 
@@ -70,7 +76,8 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
                 donationDialog.show();
                 isShow=true;
                 name= charityName;
-                Toast.makeText(view.getContext(),  charityName, Toast.LENGTH_SHORT).show();
+                charityId =  id;
+                Toast.makeText(view.getContext(),  id, Toast.LENGTH_SHORT).show();
 
 
             }
@@ -98,10 +105,11 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
         @BindView(R.id.btnDonate)
         Button donateBtn;
 
-
         public charityViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind( this, itemView);
+
+
             btnDonateDialog = (Button) donationDialog.findViewById(R.id.btnDonateDialog);
             btnDonateDialog.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -113,6 +121,8 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
                         Bundle bundle = new Bundle();
                         bundle.putString("profileName", name);
                         bundle.putString("amount", amountDonated);
+                        bundle.putString("charityId", charityId);
+                        bundle.putString("userId", userId);
                         Payment_Method payment_method = new Payment_Method();
                         payment_method.setArguments(bundle);
 

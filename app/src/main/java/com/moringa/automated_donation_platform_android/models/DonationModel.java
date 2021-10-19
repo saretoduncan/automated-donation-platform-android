@@ -1,16 +1,18 @@
 package com.moringa.automated_donation_platform_android.models;
 
-import java.security.Timestamp;
+
+
+import java.sql.Timestamp;
 
 public class DonationModel {
-    private int userid;
-    private int charityid;
+    private String userid;
+    private String charityid;
     private boolean anonymity;
     private String frequency;
     private Timestamp reminderdate;
     private String paymentmode;
     private int id;
-    public DonationModel(int userid, int charityid, boolean anonymity, String frequency, Timestamp reminderdate, String paymentmode) {
+    public DonationModel(String userid, String charityid, boolean anonymity, String frequency, String paymentmode) {
         this.userid = userid;
         this.charityid = charityid;
         this.anonymity = anonymity;
@@ -19,19 +21,19 @@ public class DonationModel {
         this.paymentmode = paymentmode;
     }
 
-    public int getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
-    public int getCharityid() {
+    public String getCharityid() {
         return charityid;
     }
 
-    public void setCharityid(int charityid) {
+    public void setCharityid(String charityid) {
         this.charityid = charityid;
     }
 

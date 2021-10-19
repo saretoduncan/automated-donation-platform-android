@@ -60,11 +60,14 @@ public class Home_fragement extends Fragment {
                 if (charityModels!=null){
                     charityList = charityModels;
                     System.out.println(charityList.get(0).getEmail());
-//                    adapter.setConvert(charityList);
-                    adapter = new CharityListAdapter(getContext(),charityList);
+                    Bundle bundle=getArguments();
+                    String userId =bundle.getString("usersId");
+                    adapter = new CharityListAdapter(getContext(),charityList,userId);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setAdapter(adapter);
+
+                    Toast.makeText(getContext(), userId, Toast.LENGTH_SHORT).show();
 
                 }
             }

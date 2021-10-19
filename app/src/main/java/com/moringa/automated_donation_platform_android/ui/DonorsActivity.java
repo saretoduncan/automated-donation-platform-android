@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,6 +50,11 @@ public class DonorsActivity extends AppCompatActivity {
 
 
         home_fragement= new Home_fragement();
+        String userId = getIntent().getStringExtra("userID");
+        Toast.makeText(DonorsActivity.this, userId, Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putString("usersId", userId);
+        home_fragement.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
         bottomNav.setOnNavigationItemSelectedListener(navListener);// listen to navigation bar button click
 
