@@ -3,6 +3,7 @@ package com.moringa.automated_donation_platform_android.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,   AdapterView.OnItemSelectedListener  {
     private String category;
     List<String> categories;
+    ProgressDialog progressDialog;
     @BindView(R.id.spinner) Spinner spinner;
     @BindView(R.id.loginButton) Button mLoginBtn;
     @BindView(R.id.registerTextView) TextView mSignup;
@@ -57,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-
+        progressDialog = new ProgressDialog(this);
 
         mLoginBtn.setOnClickListener(this);
         mSignup.setOnClickListener(this);
@@ -66,7 +68,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == mLoginBtn){
+            progressDialog.show();
+            progressDialog.setMessage("logging in...");
             login();
+            progressDialog.dismiss();
         }
         if (v == mSignup) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
