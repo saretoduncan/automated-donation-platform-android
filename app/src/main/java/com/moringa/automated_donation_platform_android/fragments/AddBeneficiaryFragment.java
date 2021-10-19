@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.cloudinary.Url;
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.models.Beneficiary;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.LoginActivity;
@@ -61,7 +62,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     private Uri imageUri;
     private String imagePath;
     private Beneficiary mBeneficiary;
-
+    private int charityId;
     private static final String TAG = "Upload ###";
 
 
@@ -82,6 +83,10 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_add_beneficiary, container, false);
         ButterKnife.bind(this,view);
         MediaManager.init(getContext());
+        SessionManager sessionManager = new SessionManager(getContext());
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String id = userDetails.get(SessionManager.KEY_ID);
+        charityId = Integer.parseInt(id);
         uploadImage.setOnClickListener(this);
         return view;
     }
@@ -92,7 +97,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         String testimonial = mTestimonial.getText().toString();
 
         Beneficiary beneficiary = new Beneficiary(name,testimonial,imagePath);
-        Call<Beneficiary> call = ApiClient.getBeneficiaryService().addBeneficiary(1,beneficiary);
+        Call<Beneficiary> call = ApiClient.getBeneficiaryService().addBeneficiary(charityId,beneficiary);
         call.enqueue(new Callback<Beneficiary>() {
             @Override
             public void onResponse(Call<Beneficiary> call, Response<Beneficiary> response) {
