@@ -83,6 +83,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_add_beneficiary, container, false);
         ButterKnife.bind(this,view);
         MediaManager.init(getContext());
+
         SessionManager sessionManager = new SessionManager(getContext());
         HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
         String id = userDetails.get(SessionManager.KEY_ID);

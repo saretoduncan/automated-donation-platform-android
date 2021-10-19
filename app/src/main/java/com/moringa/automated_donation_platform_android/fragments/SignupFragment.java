@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
@@ -31,6 +35,7 @@ import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +61,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     Uri imageUri = null;
     String imagePath;
     private static final int GALLERY_CODE = 71;
+    private static final String TAG = "Upload ###";
 
 
     public SignupFragment() {
@@ -83,6 +89,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        MediaManager.init(getContext());
         uploadImage.setOnClickListener(this);
 
         return view;
@@ -94,7 +101,13 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             onUpLoadImage();
         }
         if(view == mSignup){
-            registerUser(validateUser());
+            try {
+                uploadImageToCloudinary();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
         }
 
     }
@@ -222,8 +235,14 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             }
             imageUri = data.getData();
             imagePath = getEncodedImage(imageUri);
+            uploadImage.setText(imagePath);
         }
-        mSignup.setOnClickListener(this);
+        try {
+            mSignup.setOnClickListener(this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public String getEncodedImage(Uri uri) {
@@ -236,4 +255,38 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
         cursor.close();
         return result;
     }
+
+    public void uploadImageToCloudinary(){
+
+        MediaManager.get().upload(imageUri).callback(new UploadCallback() {
+            @Override
+            public void onStart(String requestId) {
+                Log.d(TAG, "onStart: "+"started");
+            }
+
+            @Override
+            public void onProgress(String requestId, long bytes, long totalBytes) {
+                Log.d(TAG, "onStart: "+"uploading");
+            }
+
+            @Override
+            public void onSuccess(String requestId, Map resultData) {
+                Log.d(TAG, "onStart: "+"usuccess");
+                imagePath = resultData.get("url").toString();
+                registerUser(validateUser());
+            }
+
+            @Override
+            public void onError(String requestId, ErrorInfo error) {
+                Log.d(TAG, "onStart: "+error);
+            }
+
+            @Override
+            public void onReschedule(String requestId, ErrorInfo error) {
+                Log.d(TAG, "onStart: "+error);
+            }
+        }).dispatch();
+
+    }
+
 }
