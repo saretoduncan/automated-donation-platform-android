@@ -13,39 +13,54 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
-import com.moringa.automated_donation_platform_android.models.charityModel;
+import com.moringa.automated_donation_platform_android.models.Charity;
+import com.moringa.automated_donation_platform_android.models.User;
+import com.moringa.automated_donation_platform_android.network.ApiClient;
+import com.moringa.automated_donation_platform_android.viewModel.UserViewModelCharityListVIewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.charityViewHolder> {
+public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.charityViewHolder>  {
  private Context context;
 
 
 //    private ArrayList<String> convert;
  private boolean isShow=false;
     Dialog donationDialog;
-    List<charityModel>convert;
+    List<Charity>convert;
     EditText edAmount;
     Button btnDonateDialog ;
     String name;
     String charityId;
     String userId;
+    String charityName;
+    public static User charityOrg;
 
 
-    public CharityListAdapter(Context context, List<charityModel> convert, String userId) {
+    public CharityListAdapter(Context context, List<Charity> convert, String userId) {
         this.context = context;
         this.convert= convert;
         this.userId = userId;
     }
-    public void setConvert(List<charityModel> convert) {
+    public void setConvert(List<Charity> convert) {
         this.convert = convert;
     }
 
@@ -61,9 +76,30 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
-    holder.charityProfileName.setText(this.convert.get(position).getName());
-    String charityName = holder.charityProfileName.getText().toString();
-    String id  = Integer.toString(this.convert.get(position).getId());
+
+        String id  = Integer.toString(this.convert.get(position).getId());
+        Call<User> call = ApiClient.getDonationService().getCharityByUserId(Integer.toString(convert.get(position).getUserId()));
+        call.enqueue(new Callback<User>() {
+          @Override
+          public void onResponse(Call<User> call, Response<User> response) {
+              if(response.isSuccessful()){
+                  System.out.println("userResponse::"+ "is success");
+                   holder.charityProfileName.setText(response.body().getName());
+                   charityName= holder.charityProfileName.getText().toString();
+
+              }else{
+                  System.out.println("userResponse::"+ "is not a success");
+              }
+          }
+
+          @Override
+          public void onFailure(Call<User> call, Throwable t) {
+
+          }
+
+      });
+
+
 
 
 
@@ -75,9 +111,9 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
                 donationDialog.show();
                 isShow=true;
-                name= charityName;
+                name= holder.charityProfileName.getText().toString();
                 charityId =  id;
-                Toast.makeText(view.getContext(),  id, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), id, Toast.LENGTH_SHORT).show();
 
 
             }
@@ -99,6 +135,8 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
     }
 
+
+
     public class charityViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.charityProfileName)
         TextView charityProfileName;
@@ -108,7 +146,6 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
         public charityViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind( this, itemView);
-
 
             btnDonateDialog = (Button) donationDialog.findViewById(R.id.btnDonateDialog);
             btnDonateDialog.setOnClickListener(new View.OnClickListener() {
@@ -137,4 +174,5 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
         }
     }
+
 }
