@@ -1,5 +1,6 @@
 package com.moringa.automated_donation_platform_android.network;
 
+import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
 import com.moringa.automated_donation_platform_android.models.SignupRequest;
@@ -19,4 +20,7 @@ public interface UserService {
 
     @POST("/api/users/register")
     Call<User> userSignup(@Body User signupRequest);
+
+    @GET("api/users/{userId}")
+    Call<User> getUserDetails(@Path("userId") int userId);
 }

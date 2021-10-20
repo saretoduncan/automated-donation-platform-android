@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.models.DonationModel;
 import com.moringa.automated_donation_platform_android.models.Donor;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @NonNull
     @Override
-    public DonorListAdapter.DonorsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DonorsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.donor_list_item,parent,false);
         DonorsViewHolder viewHolder = new DonorsViewHolder(view);
         return viewHolder;
@@ -37,17 +39,26 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @Override
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
-        String amt = Integer.toString(donors.get(position).getAmount());
-        holder.donorAmountTxt.setText("Ksh. " + amt);
-        holder.nameTxt.setText(donors.get(position).getName());
-        holder.donorImage.setImageResource(donors.get(position).getImage());
-//        String imageUrl = donors.get(position).getImage();
-//        Picasso.get().load(imageUrl).into(holder.donorImage);
 
+//        holder.donorImage.setImageResource(imageUrl);
+        try {
+            String amt = donors.get(position).getAmount();
+            holder.donorAmountTxt.setText(amt);
+            holder.nameTxt.setText(donors.get(position).getName());
+            String imageUrl = donors.get(position).getImage();
+            Picasso.get().load(imageUrl).into(holder.donorImage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
+        if(donors == null){
+            return 6;
+        }else if(donors.size() == 1){
+            return 2;
+        }
         return donors.size();
     }
 

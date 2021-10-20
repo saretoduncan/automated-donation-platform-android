@@ -2,10 +2,10 @@ package com.moringa.automated_donation_platform_android.models;
 
 public class Donor {
     private String name;
-    private Integer amount;
-    private int image;
+    private String amount;
+    private String image;
 
-    public Donor(String name, Integer amount, int image) {
+    public Donor(String name, String amount, String image) {
         this.name = name;
         this.amount = amount;
         this.image = image;
@@ -22,19 +22,19 @@ public class Donor {
         this.name = name;
     }
 
-    public Integer getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
