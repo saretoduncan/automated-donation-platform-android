@@ -98,52 +98,37 @@ public class Payment_Method extends Fragment {
                  String charityId= getArguments().getString("charityId");
                  String amount = getArguments().getString("amount");
 
-                 DonationModel donationModel = new DonationModel(userId,charityId,anonymity,"monthly",amount);
-                 Call<DonationModel> call = ApiClient.getDonationService().submitDonations(donationModel);
-                 call.enqueue(new Callback<DonationModel>() {
-                     @Override
-                     public void onResponse(Call<DonationModel> call, Response<DonationModel> response) {
-                         if(response.isSuccessful()){
-                             Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-                         }else
-                             Toast.makeText(getContext(), "not a success", Toast.LENGTH_SHORT).show();
-                     }
-
-                     @Override
-                     public void onFailure(Call<DonationModel> call, Throwable t) {
-
-                     }
-                 });
-
+               DonationModel donationModel = new DonationModel(userId,charityId,anonymity,"monthly",amount);
+               initiateViewModel(donationModel);
                  System.out.println("userid::::"+ userId);
+
                  Toast.makeText(getContext(), userId , Toast.LENGTH_SHORT).show();
                  toolbar.setVisibility(View.VISIBLE);
                  ((AppCompatActivity) requireContext()).getSupportFragmentManager().beginTransaction()
-                         .replace(R.id.frameLayout1, new DonationList_fragment())
-                         .commit();
+                         .replace(R.id.frameLayout1, new DonationList_fragment());
+
              }
+
          });
 
         return mView;
     }
-//    public void initiateViewModel(DonationModel donation){
-//        Call<DonationModel> call = ApiClient.getDonationService().submitDonations(donation);
-//        call.enqueue(new Callback<DonationModel>() {
-//            @Override
-//            public void onResponse(Call<DonationModel> call, Response<DonationModel> response) {
-//                    if(response.isSuccessful()){
-//                        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-//                    }else
-//                        Toast.makeText(getContext(), "not a success", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DonationModel> call, Throwable t) {
-//
-//            }
-//        });
-//
-//    }
+    public void initiateViewModel(DonationModel donation){
+
+
+        NewDonationViewModel newDonationViewModel = new ViewModelProvider(this).get(NewDonationViewModel.class);
+        newDonationViewModel.makeApiCall(donation);
+        newDonationViewModel.getNewDonationObserver().observe(this, new Observer<DonationModel>() {
+            @Override
+            public void onChanged(DonationModel donationModel) {
+                if(donationModel==null){
+                    Toast.makeText(getContext(), "not a success", Toast.LENGTH_SHORT).show();
+                }
+                else Toast.makeText(getContext(),"success", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
     public void hideToolBar(){
         toolbar.setVisibility(View.GONE);//hide bottom navbar
         bottomNav.setVisibility(View.GONE);//hide action bar
