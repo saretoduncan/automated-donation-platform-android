@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
+import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
 import com.moringa.automated_donation_platform_android.models.User;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.emailEditText) EditText email;
     @BindView(R.id.passwordEditText) EditText password;
     @BindView(R.id.forgotPasswordTextView) TextView forgotPassword;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +113,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
                     User user = response.body();
                     SessionManager sessionManager = new SessionManager(LoginActivity.this);
+                    userId = user.getId();
                     sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
-
+                    getCharityDetails(sessionManager);
                     Intent intent = null;
                     switch(category) {
                         case "Charity":
@@ -157,6 +160,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return false;
         }
         return true;
+    }
+
+    public void getCharityDetails(SessionManager sessionManager){
+        Call<Charity> call = ApiClient.getCharityService().getCharity(userId);
+        call.enqueue(new Callback<Charity>() {
+            @Override
+            public void onResponse(Call<Charity> call, Response<Charity> response) {
+                if (response.isSuccessful()){
+                    Charity mCharity = response.body();
+                    sessionManager.createCharitySession(mCharity.getDescription(),mCharity.getTrustDeed(),Integer.toString(mCharity.getId()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Charity> call, Throwable t) {
+
+            }
+        });
     }
 
 }

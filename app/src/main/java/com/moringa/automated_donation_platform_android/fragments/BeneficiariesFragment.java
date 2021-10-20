@@ -75,10 +75,9 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
         ButterKnife.bind(this,view);
 
         SessionManager sessionManager = new SessionManager(getContext());
-        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
-        String id = userDetails.get(SessionManager.KEY_ID);
+        HashMap<String,String> userDetails = sessionManager.getCharityDetailsFromSession();
+        String id = userDetails.get(SessionManager.KEY_CHARITYID);
         charityId = Integer.parseInt(id);
-
 
         getBeneficiaries();
         BeneficiaryListAdapter mAdapter = new BeneficiaryListAdapter(mBeneficiaries, getContext());

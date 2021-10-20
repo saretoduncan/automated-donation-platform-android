@@ -85,8 +85,8 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
         MediaManager.init(getContext());
 
         SessionManager sessionManager = new SessionManager(getContext());
-        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
-        String id = userDetails.get(SessionManager.KEY_ID);
+        HashMap<String,String> userDetails = sessionManager.getCharityDetailsFromSession();
+        String id = userDetails.get(SessionManager.KEY_CHARITYID);
         charityId = Integer.parseInt(id);
         uploadImage.setOnClickListener(this);
         return view;
