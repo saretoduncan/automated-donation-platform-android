@@ -101,8 +101,11 @@ public class Payment_Method extends Fragment {
                DonationModel donationModel = new DonationModel(userId,charityId,anonymity,"monthly",amount);
                initiateViewModel(donationModel);
                  System.out.println("userid::::"+ userId);
-
+                 ((AppCompatActivity) requireContext()).getSupportFragmentManager().beginTransaction()
+                         .replace(R.id.frameLayout1, new DonationList_fragment()).addToBackStack(null)
+                         .commit();
              }
+
          });
 
         return mView;
