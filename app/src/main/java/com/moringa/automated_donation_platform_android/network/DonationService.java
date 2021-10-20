@@ -1,7 +1,8 @@
 package com.moringa.automated_donation_platform_android.network;
 
+import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.DonationModel;
-import com.moringa.automated_donation_platform_android.models.charityModel;
+import com.moringa.automated_donation_platform_android.models.User;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface DonationService {
     @POST("api/donation/new")
@@ -27,8 +27,15 @@ public interface DonationService {
     Call<List<DonationModel>> getAllDonationPerCharity( // get all donations per charity
             @Path("charityId") String charityId
     );
-    @GET("api/donations/charities/all")// get all charities
-    Call <List<charityModel>> getAllCharities();
+    @GET("api/charities")// get all charities
+    Call <List<Charity>> getAllCharities();
+    @GET("api/users")//getAllUsers
+    Call <List<User>> getAllUsers();
+
+    @GET("api/users/{id}")//get userById
+    Call<User> getCharityByUserId(
+            @Path("id") String id
+    );
 
 
 

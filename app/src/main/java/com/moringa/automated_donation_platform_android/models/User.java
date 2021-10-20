@@ -24,6 +24,7 @@ public class User {
         this.categories = categories;
     }
 
+
     public String getName() {
         return name;
     }

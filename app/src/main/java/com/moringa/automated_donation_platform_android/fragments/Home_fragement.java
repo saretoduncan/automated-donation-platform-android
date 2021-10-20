@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,15 +16,19 @@ import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapters.CharityListAdapter;
-import com.moringa.automated_donation_platform_android.models.charityModel;
+import com.moringa.automated_donation_platform_android.models.Charity;
+import com.moringa.automated_donation_platform_android.models.User;
+import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.viewModel.DonationCharityListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,11 +36,12 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class Home_fragement extends Fragment {
-    private List<charityModel> charityList;
+    private List<Charity> charityList;
     private CharityListAdapter adapter;
     DonationCharityListViewModel viewModel;
     String[] names= {"inua-dada","padUpGirl","educatedGirls"};
     ArrayList<String> convert= new ArrayList<>();
+    List<User> users;
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.mainRecyclerView)
     RecyclerView recyclerView;
@@ -54,12 +58,11 @@ public class Home_fragement extends Fragment {
         viewModel = new ViewModelProvider(this).get(DonationCharityListViewModel.class);
         viewModel.makeApiCall();
 
-        viewModel.getCharityListObserver().observe(this, new Observer<List<charityModel>>() {
+        viewModel.getCharityListObserver().observe(this, new Observer<List<Charity>>() {
             @Override
-            public void onChanged(List<charityModel> charityModels) {
+            public void onChanged(List<Charity> charityModels) {
                 if (charityModels!=null){
                     charityList = charityModels;
-                    System.out.println(charityList.get(0).getEmail());
                     Bundle bundle=getArguments();
                     String userId =bundle.getString("usersId");
                     adapter = new CharityListAdapter(getContext(),charityList,userId);
@@ -72,6 +75,24 @@ public class Home_fragement extends Fragment {
                 }
             }
         });
+//        Call<List<User>> call = ApiClient.getDonationService().getAllUsers();
+//        call.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                if(response.isSuccessful()){
+//                    users= response.body();
+//                    System.out.println("userResponse" + "is success");
+//                }
+//                else System.out.println("userResponse"+ " not a success");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//
+//            }
+//        });
+//
+//        System.out.println(users.get(0).getName());
 
 
 
