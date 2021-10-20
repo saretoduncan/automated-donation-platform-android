@@ -8,8 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.models.DonationModel;
+
+import java.util.List;
 
 public class DonationListAdapter extends RecyclerView.Adapter<DonationListAdapter.DonationListViewHolder> {
+    private List<DonationModel> donationList;
+    public DonationListAdapter(List<DonationModel> donationList) {
+       this.donationList = donationList;
+    }
+
     @NonNull
     @Override
     public DonationListAdapter.DonationListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -24,7 +32,7 @@ public class DonationListAdapter extends RecyclerView.Adapter<DonationListAdapte
 
     @Override
     public int getItemCount() {
-        return 12;
+        return donationList.size();
     }
 
     public class DonationListViewHolder extends RecyclerView.ViewHolder {

@@ -33,7 +33,7 @@ public class DonorsActivity extends AppCompatActivity {
     TextView mDonorName;
 
     Home_fragement home_fragement;
-
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +46,17 @@ public class DonorsActivity extends AppCompatActivity {
         SessionManager sessionManager = new SessionManager(this);
         HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
         String name = userDetails.get(SessionManager.KEY_NAME);
+        String usersId = userDetails.get(SessionManager.KEY_ID);
         mDonorName.setText(name);
 
 
         home_fragement= new Home_fragement();
-        String userId = getIntent().getStringExtra("userID");//get userid
+        userId = getIntent().getStringExtra("userID");//get userid
 
         Bundle bundle = new Bundle();
         bundle.putString("usersId", userId);
         home_fragement.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1,home_fragement).commit();// opens home fragment when the app starts
         bottomNav.setOnNavigationItemSelectedListener(navListener);// listen to navigation bar button click
 
@@ -71,9 +73,14 @@ public class DonorsActivity extends AppCompatActivity {
                             toolbar_visibility_visible();
                             break;
                         case R.id.nav_donations://donation fragment
-
+                            Bundle bundle = new Bundle();
+                            bundle.putString("usersId", userId);
+                            Toast.makeText(DonorsActivity.this, userId, Toast.LENGTH_SHORT).show();
+                            new DonationList_fragment().setArguments(bundle);
                             selectedFragment= new DonationList_fragment();
+
                             toolbar_visibility_visible();
+
                             break;
                         case R.id.nav_profile://profile fragment
                             toolbar_visibility_gone();
