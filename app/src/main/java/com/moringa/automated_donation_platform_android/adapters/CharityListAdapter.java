@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +30,13 @@ import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.viewModel.UserViewModelCharityListVIewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +54,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
     String name;
     String charityId;
     String userId;
+    String charity_user_id;
     String charityName;
     public static User charityOrg;
 
@@ -78,14 +82,20 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
 
         String id  = Integer.toString(this.convert.get(position).getId());
-        Call<User> call = ApiClient.getDonationService().getCharityByUserId(Integer.toString(convert.get(position).getUserId()));
+        String usersId=Integer.toString(convert.get(position).getUserId());
+        Call<User> call = ApiClient.getDonationService().getCharityByUserId(usersId);
         call.enqueue(new Callback<User>() {
           @Override
           public void onResponse(Call<User> call, Response<User> response) {
               if(response.isSuccessful()){
                   System.out.println("userResponse::"+ "is success");
                    holder.charityProfileName.setText(response.body().getName());
-                   charityName= holder.charityProfileName.getText().toString();
+                  if (!response.body().getImage().equals("") ) {
+                      Picasso.get().load(response.body().getImage()).into(holder.profilePic);
+                  }
+
+
+
 
               }else{
                   System.out.println("userResponse::"+ "is not a success");
@@ -98,13 +108,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
           }
 
       });
-
-
-
-
-
-
-
+        holder.profileDescription.setText(this.convert.get(position).getDescription());
         holder.donateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +117,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
                 isShow=true;
                 name= holder.charityProfileName.getText().toString();
                 charityId =  id;
+                charity_user_id= usersId;
                 Toast.makeText(view.getContext(), id, Toast.LENGTH_SHORT).show();
 
 
@@ -142,6 +147,10 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
         TextView charityProfileName;
         @BindView(R.id.btnDonate)
         Button donateBtn;
+        @BindView(R.id.charityProfilePic)
+        CircleImageView profilePic;
+        @BindView(R.id.textView_description)
+        TextView profileDescription;
 
         public charityViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -160,6 +169,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
                         bundle.putString("amount", amountDonated);
                         bundle.putString("charityId", charityId);
                         bundle.putString("userId", userId);
+                        bundle.putString("charity_user",charity_user_id);
                         Payment_Method payment_method = new Payment_Method();
                         payment_method.setArguments(bundle);
 

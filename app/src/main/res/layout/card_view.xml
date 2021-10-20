@@ -29,6 +29,7 @@ android:layout_marginVertical="5dp"
             <TextView
                 android:layout_alignBottom="@+id/charityCoverImg"
                 android:textSize="14sp"
+                android:id="@+id/textView_description"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
@@ -41,15 +42,15 @@ android:layout_marginVertical="5dp"
                 android:shadowRadius="1"
                 />
         </RelativeLayout>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/charityProfilePic"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/charitypro"
             android:layout_below="@+id/charityRelative"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
-            />
+            android:layout_marginTop="8dp"
+            android:src="@drawable/charitypro" />
 
         <TextView
             android:layout_width="wrap_content"

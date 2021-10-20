@@ -20,14 +20,17 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.models.DonationModel;
+import com.moringa.automated_donation_platform_android.models.User;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.viewModel.NewDonationViewModel;
+import com.squareup.picasso.Picasso;
 
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +49,7 @@ public class Payment_Method extends Fragment {
     Bundle bundle;
     NewDonationViewModel newDonationViewModel;
     TextView backButton,add_card, profileName,amount;
+    CircleImageView profileImage;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -61,10 +65,34 @@ public class Payment_Method extends Fragment {
          add_card = (TextView) mView.findViewById(R.id.add_card);
          profileName=(TextView) mView.findViewById(R.id.text_profile_name);
          amount= (TextView) mView.findViewById(R.id.donationAmount);
+         profileImage = (CircleImageView) mView.findViewById(R.id.payment_profile_image);
+
 
          Bundle bundle = getArguments();
          profileName.setText(String.valueOf(bundle.getString("profileName")));
          amount.setText("Ksh " +String.valueOf(bundle.getString("amount")));
+        Call<User> call = ApiClient.getDonationService().getCharityByUserId(bundle.getString("charity_user"));
+        call.enqueue(new Callback<User>() {
+                         @Override
+                         public void onResponse(Call<User> call, Response<User> response) {
+                             if (response.isSuccessful()) {
+                                 System.out.println("userResponse::" + "is success");
+                                 if (!response.body().getImage().equals("")) {
+                                     Picasso.get().load(response.body().getImage()).into(profileImage);
+
+                                 }
+
+
+                             } else {
+                                 System.out.println("userResponse::" + "is not a success");
+                             }
+                         }
+
+                         @Override
+                         public void onFailure(Call<User> call, Throwable t) {
+
+                         }
+                     });
          backButton.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
@@ -103,9 +131,9 @@ public class Payment_Method extends Fragment {
                  System.out.println("userid::::"+ userId);
 
                  Toast.makeText(getContext(), userId , Toast.LENGTH_SHORT).show();
-                 toolbar.setVisibility(View.VISIBLE);
                  ((AppCompatActivity) requireContext()).getSupportFragmentManager().beginTransaction()
                          .replace(R.id.frameLayout1, new DonationList_fragment());
+                 showToolBar();
 
              }
 

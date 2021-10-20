@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.adapters.CharityListAdapter;
 import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.User;
@@ -22,7 +23,9 @@ import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.viewModel.DonationCharityListViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +42,7 @@ public class Home_fragement extends Fragment {
     private List<Charity> charityList;
     private CharityListAdapter adapter;
     DonationCharityListViewModel viewModel;
-    String[] names= {"inua-dada","padUpGirl","educatedGirls"};
+    String usersId;
     ArrayList<String> convert= new ArrayList<>();
     List<User> users;
     @SuppressLint("NonConstantResourceId")
@@ -54,6 +57,10 @@ public class Home_fragement extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home_fragement, container, false);
         ButterKnife.bind(this,view);
+        SessionManager sessionManager = new SessionManager(requireContext());
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String name = userDetails.get(SessionManager.KEY_NAME);
+
 
         viewModel = new ViewModelProvider(this).get(DonationCharityListViewModel.class);
         viewModel.makeApiCall();
@@ -63,36 +70,19 @@ public class Home_fragement extends Fragment {
             public void onChanged(List<Charity> charityModels) {
                 if (charityModels!=null){
                     charityList = charityModels;
-                    Bundle bundle=getArguments();
-                    String userId =bundle.getString("usersId");
-                    adapter = new CharityListAdapter(getContext(),charityList,userId);
+                    usersId = userDetails.get(SessionManager.KEY_ID);
+
+                    adapter = new CharityListAdapter(getContext(),charityList,usersId);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setAdapter(adapter);
 
-                    Toast.makeText(getContext(), userId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), usersId, Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
-//        Call<List<User>> call = ApiClient.getDonationService().getAllUsers();
-//        call.enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                if(response.isSuccessful()){
-//                    users= response.body();
-//                    System.out.println("userResponse" + "is success");
-//                }
-//                else System.out.println("userResponse"+ " not a success");
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//
-//            }
-//        });
-//
-//        System.out.println(users.get(0).getName());
+
 
 
 
