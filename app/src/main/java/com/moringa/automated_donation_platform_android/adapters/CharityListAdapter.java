@@ -1,5 +1,6 @@
 package com.moringa.automated_donation_platform_android.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -133,9 +134,10 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
     @Override
     public int getItemCount() {
-
-            return convert.size();
-
+    if(convert!=null) {
+        return convert.size();
+    }
+    return 0;
 
 
     }
@@ -143,12 +145,16 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
 
     public class charityViewHolder extends RecyclerView.ViewHolder{
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.charityProfileName)
         TextView charityProfileName;
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.btnDonate)
         Button donateBtn;
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.charityProfilePic)
         CircleImageView profilePic;
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.textView_description)
         TextView profileDescription;
 

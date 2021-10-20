@@ -6,14 +6,13 @@
     android:background="@color/fadePink"
     tools:context=".fragments.Profile_fragment">
 
-   <de.hdodenhof.circleimageview.CircleImageView
-       android:id="@+id/pro_profile_pic"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:src="@drawable/splashbg"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="150dp"
-       />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pro_profile_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/splashbg" />
 
     <EditText
         android:id="@+id/profileName"
@@ -22,9 +21,9 @@
         android:layout_below="@id/pro_profile_pic"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Jemimah"
-        android:textColor="@color/colorPrimary"
         android:drawableEnd="@drawable/ic_baseline_edit_24"
+        android:text="@string/jemimah"
+        android:textColor="@color/colorPrimary"
 
         />
 
@@ -41,19 +40,22 @@
             android:id="@+id/email_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          android:textSize="18dp"
+          android:textSize="18sp"
             android:textColor="@color/black"
-            android:text="Email: " />
+            android:text="@string/email" />
 
         <EditText
 
             android:id="@+id/editText_mail"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:drawableEnd="@drawable/ic_baseline_edit_24"
-            android:text="inua.dada@dada.org" />
+            android:text="@string/inua_dada_dada_org"
+            android:autofillHints=""
+            android:inputType="text"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,18 +72,21 @@
             android:id="@+id/textView_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone: "
+            android:text="@string/phone"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editText_phone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:drawableEnd="@drawable/ic_baseline_edit_24"
             android:ems="10"
-            android:text="020-0011029394" />
+            android:inputType="phone"
+            android:text="@string/_020_0011029394"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,7 +124,7 @@
         android:background="@drawable/rounded_button"
         android:minWidth="150dip"
         android:minHeight="35dip"
-        android:text="Update"
+        android:text="@string/update"
         android:layout_marginTop="20dp"
         android:textColor="@color/white" />
 
