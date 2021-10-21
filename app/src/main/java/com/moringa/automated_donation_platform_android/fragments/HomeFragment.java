@@ -23,6 +23,7 @@
         import java.io.IOException;
         import java.util.ArrayList;
         import java.util.HashMap;
+        import java.util.HashSet;
         import java.util.List;
         import java.util.Map;
 
@@ -36,9 +37,10 @@ public class HomeFragment extends Fragment {
     private int charityId;
     private int userId;
     private User user;
-    List<String> userIds = new ArrayList<>();
+    HashSet<String> userIds = new HashSet<>();
     List<User> nonAnonymousDonors = new ArrayList<>();
     List<DonationModel> donorList = new ArrayList<>();
+    List<Donor> nonAnonymousDonorsList = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,7 +61,12 @@ public class HomeFragment extends Fragment {
             SessionManager sessionManager = new SessionManager(getContext());
             HashMap<String,String> userDetails = sessionManager.getCharityDetailsFromSession();
             charityId = Integer.parseInt(userDetails.get(SessionManager.KEY_CHARITYID));
+
             getNonAnoymousDonors();
+
+//            DonorListAdapter mAdapter = new DonorListAdapter(getContext(),nonAnonymousDonorsList);
+//            mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+//            mRecyclerView.setAdapter(mAdapter);
 
         }catch (IOException ex){
             ex.printStackTrace();
@@ -78,10 +85,14 @@ public class HomeFragment extends Fragment {
 
                     for (DonationModel theDonors:donorList) {
                         String id = theDonors.getUserid();
-                        Log.d("donorId", id);
                         userIds.add(id);
                     }
-                    getUserDetails();
+
+                    nonAnonymousDonorsList = getUserDetails();
+
+                    for (Donor list:nonAnonymousDonorsList) {
+                        Log.d("donorId", list.getName() + " "+ list.getAmount() + " "+list.getImage());
+                    }
 
                     Toast.makeText(getContext(), "Retrieved non anonymous donors successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -94,7 +105,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void getUserDetails(){
+    public List<Donor> getUserDetails(){
         for (String id:userIds) {
             Call<User> call = ApiClient.getUserService().getUserDetails(Integer.parseInt(id));
             call.enqueue(new Callback<User>() {
@@ -102,18 +113,20 @@ public class HomeFragment extends Fragment {
                 public void onResponse(Call<User> call, Response<User> response) {
                     if(response.isSuccessful()){
                         User userDetails = response.body();
-                        List<Donor> nonAnonymousDonorsList = new ArrayList<>();
+
                         Log.d("donorId", userDetails.getName());
                         for (DonationModel donor:donorList) {
-                            Donor donorDetails = new Donor(userDetails.getName(), donor.getPaymentmode(),userDetails.getImage());
-                            Log.d("donorId", donorDetails.getName() +" "+ donorDetails.getAmount());
-                            nonAnonymousDonorsList.add(donorDetails);
+                            if(Integer.parseInt(donor.getUserid()) == userDetails.getId()){
+                                Donor donorDetails = new Donor(userDetails.getName(), donor.getPaymentmode(),userDetails.getImage());
+                                Log.d("donorId", donorDetails.getName() +" "+ donorDetails.getAmount());
+                                nonAnonymousDonorsList.add(donorDetails);
+
+                            }
                         }
 
                         DonorListAdapter mAdapter = new DonorListAdapter(getContext(),nonAnonymousDonorsList);
                         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
                         mRecyclerView.setAdapter(mAdapter);
-
                     }
                 }
                 @Override
@@ -122,6 +135,7 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+        return nonAnonymousDonorsList;
 
     }
 }

@@ -42,8 +42,15 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
         try {
             holder.donorAmountTxt.setText(donors.get(position).getAmount());
-            String[] name = donors.get(position).getName().trim().split(" ");
-            holder.nameTxt.setText(name[0]);
+
+            String name = donors.get(position).getName().trim();
+            String[] fName = name.split(" ");
+            if (fName.length >1){
+                holder.nameTxt.setText(fName[0]);
+            }else {
+                holder.nameTxt.setText(name);
+            }
+
             String imageUrl = donors.get(position).getImage();
             Picasso.get().load(imageUrl).into(holder.donorImage);
         } catch (Exception e) {
