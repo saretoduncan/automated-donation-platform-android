@@ -131,7 +131,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     }
 
     private void moveToNewActivity () {
-        Intent i = new Intent(getActivity(), DonorsActivity.class);
+        Intent i = new Intent(getActivity(), LoginActivity.class);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0, 0);
 
@@ -148,6 +148,8 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
                         SessionManager sessionManager = new SessionManager(getContext());
                         sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
                         callbackFragment.changeFragment();
+                    }else{
+                        moveToNewActivity();
                     }
                     Toast.makeText(getContext(), "Authentication Successful", Toast.LENGTH_SHORT).show();
 

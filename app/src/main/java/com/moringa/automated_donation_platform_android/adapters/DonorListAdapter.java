@@ -14,6 +14,7 @@ import com.moringa.automated_donation_platform_android.models.DonationModel;
 import com.moringa.automated_donation_platform_android.models.Donor;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,12 +40,10 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @Override
     public void onBindViewHolder(@NonNull DonorsViewHolder holder, int position) {
-
-//        holder.donorImage.setImageResource(imageUrl);
         try {
-            String amt = donors.get(position).getAmount();
-            holder.donorAmountTxt.setText(amt);
-            holder.nameTxt.setText(donors.get(position).getName());
+            holder.donorAmountTxt.setText(donors.get(position).getAmount());
+            String[] name = donors.get(position).getName().trim().split(" ");
+            holder.nameTxt.setText(name[0]);
             String imageUrl = donors.get(position).getImage();
             Picasso.get().load(imageUrl).into(holder.donorImage);
         } catch (Exception e) {
@@ -54,11 +53,6 @@ public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.Dono
 
     @Override
     public int getItemCount() {
-        if(donors == null){
-            return 6;
-        }else if(donors.size() == 1){
-            return 2;
-        }
         return donors.size();
     }
 
