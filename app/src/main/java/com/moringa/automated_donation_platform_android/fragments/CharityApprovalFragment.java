@@ -15,6 +15,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.content.CursorLoader;
 
 import android.provider.MediaStore;
@@ -32,10 +35,12 @@ import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
+import com.moringa.automated_donation_platform_android.models.Admin;
 import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.network.ApiClient;
 import com.moringa.automated_donation_platform_android.ui.DonorsActivity;
 import com.moringa.automated_donation_platform_android.ui.LoginActivity;
+import com.moringa.automated_donation_platform_android.viewModel.AdminViewModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +59,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
     private String trustDeedPath;
     private Uri trustDeedUri;
     private int userId;
+    AdminViewModel viewModel;
     private static final String TAG = "Upload ###";
 
     public CharityApprovalFragment() {
@@ -114,6 +120,23 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
         });
 
     }
+    public void sendApprovalRequest(){
+        SessionManager sessionManager = new SessionManager(requireContext());
+        HashMap<String,String> userDetails = sessionManager.getUserDetailsFromSession();
+        String charityId = userDetails.get(SessionManager.KEY_ID);
+        viewModel = new ViewModelProvider(this). get(AdminViewModel.class);
+        Admin admin = new Admin(charityId);
+        viewModel.sendApprovalRequest(admin);
+        viewModel.getApproveCharity_requestObserve().observe(this, new Observer<Admin>() {
+            @Override
+            public void onChanged(Admin admin) {
+                if(admin!=null){
+                    Toast.makeText(getContext(),"request sent", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(getContext(), "request not sent", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     private void moveToNewActivity () {
         Intent i = new Intent(getActivity(), LoginActivity.class);
@@ -134,6 +157,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
         if (view == sendBtn){
             try {
                 uploadPdfToCloudinary();
+                sendApprovalRequest();
             }catch (Exception e){
                 e.printStackTrace();
             }

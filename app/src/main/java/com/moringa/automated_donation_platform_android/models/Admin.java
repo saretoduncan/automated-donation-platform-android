@@ -1,20 +1,20 @@
 package com.moringa.automated_donation_platform_android.models;
 
 public class Admin {
-private int charityid;
+private String charityid;
 private boolean approval;
 private int id;
-    public Admin(int charityid, boolean approval) {
+    public Admin(String charityid) {
         this.charityid = charityid;
-        this.approval = approval;
+
 
     }
 
-    public int getCharityid() {
+    public String getCharityid() {
         return charityid;
     }
 
-    public void setCharityid(int charityid) {
+    public void setCharityid(String charityid) {
         this.charityid = charityid;
     }
 

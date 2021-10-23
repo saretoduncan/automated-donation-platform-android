@@ -18,6 +18,10 @@ public interface AdminServices {
     Call<Admin> sendRequestToAdmin(@Body Admin charityRequest);
     @GET("api/admin/getallcharites")// get all charities
     Call<List<Admin>>adminGetAllCharities();
+    @GET("api/admin/getAllNotApproved")//get all not approved
+    Call<List<Admin>>adminGetAllNotApproved();
+    @GET("api/admin/getallapprove")
+    Call<List<Admin>>adminGetAllApproved();//get all approved
     @PATCH("api/admin/approve/{charityId}")//approve charity Organization
     Call<Admin>  adminApproveCharity(@Path("charityId") String charityId );
     @DELETE("api/deleteCharityOrganizationByid/{id}")//delete charity Organization

@@ -31,22 +31,21 @@ public class AdminViewModel extends ViewModel {
         return approveCharity_request;
     }
 
-    public void setApproveCharity(MutableLiveData<Admin> approveCharity) {
-        this.approveCharity_request = approveCharity;
+    public MutableLiveData<Admin> getApproveCharity_requestObserve() {
+        return approveCharity_request;
     }
 
     public MutableLiveData<Void> getDeleteCharityRequestObserve() {
         return deleteCharityRequest;
     }
 
-    void sendApprovalRequest(Admin charity){//send approval request
+    public void sendApprovalRequest(Admin charity){//send approval request
         Call<Admin> call= ApiClient.getAdminServices().sendRequestToAdmin(charity);
         call.enqueue(new Callback<Admin>() {
             @Override
             public void onResponse(Call<Admin> call, Response<Admin> response) {
                 if(response.isSuccessful()) {
                     System.out.println("sendApprovalRequest::: is a success");
-                    approveCharity_request.postValue(response.body());
                 }else System.out.println("sendApprovalRequest::: is not a success");
             }
 
@@ -56,7 +55,7 @@ public class AdminViewModel extends ViewModel {
             }
         });
     }
-    void getAllAdminCharities(){//get all charities
+   public void getAllAdminCharities(){//get all charities
         Call <List<Admin>> call = ApiClient.getAdminServices().adminGetAllCharities();
         call.enqueue(new Callback<List<Admin>>() {
             @Override
@@ -72,14 +71,13 @@ public class AdminViewModel extends ViewModel {
             }
         });
     }
-    void approveAdminCharity(String charityId){ //approve a charity
+   public void approveAdminCharity(String charityId){ //approve a charity
         Call<Admin> call = ApiClient.getAdminServices().adminApproveCharity(charityId);
         call.enqueue(new Callback<Admin>() {
             @Override
             public void onResponse(Call<Admin> call, Response<Admin> response) {
                 if(response.isSuccessful()){
                     System.out.println("charityApproval::: is a success" );
-                    approveCharity_request.postValue(response.body());
                 }else{
                     System.out.println("charityApproval::: is not a success");
                 }
@@ -89,7 +87,46 @@ public class AdminViewModel extends ViewModel {
             }
         });
     }
-    void deleteRequest_charity( String charityId){
+   public void adminGetAllApproved(){ //get all approved
+        Call <List<Admin>> call= ApiClient.getAdminServices().adminGetAllApproved();
+        call.enqueue(new Callback<List<Admin>>() {
+            @Override
+            public void onResponse(Call<List<Admin>> call, Response<List<Admin>> response) {
+                if(response.isSuccessful()){
+                    System.out.println("get all approved:::: is a success");
+                    adminAllCharities.setValue(response.body());
+
+                }else {
+                    System.out.println("get all approved:: was not a success");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Admin>> call, Throwable t) {
+
+            }
+        });
+    }
+   public void setAdminAllNotApproved(){ //get all not approved
+        Call<List<Admin>> call = ApiClient.getAdminServices().adminGetAllNotApproved();
+        call.enqueue(new Callback<List<Admin>>() {
+            @Override
+            public void onResponse(Call<List<Admin>> call, Response<List<Admin>> response) {
+                if(response.isSuccessful()) {
+                    System.out.println("get all not approved:::: is a success");
+                    adminAllCharities.setValue(response.body());
+                }else {
+                    System.out.println("get all not approved:: was not a success");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Admin>> call, Throwable t) {
+
+            }
+        });
+    }
+    public void deleteRequest_charity( String charityId){//delete charity request
         Call<Void> call = ApiClient.getAdminServices().adminDeleteCharityOrganisation(charityId);
         call.enqueue(new Callback<Void>() {
             @Override
