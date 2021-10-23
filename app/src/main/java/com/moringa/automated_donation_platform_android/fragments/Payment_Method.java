@@ -132,8 +132,7 @@ public class Payment_Method extends Fragment {
 
                  Toast.makeText(getContext(), userId , Toast.LENGTH_SHORT).show();
 
-                 ((AppCompatActivity) requireContext()).getSupportFragmentManager().beginTransaction()
-                         .add(R.id.frameLayout1, new DonationList_fragment()).commit();
+                 ((AppCompatActivity) requireContext()).getSupportFragmentManager().popBackStack();
                  showToolBar();
 
              }

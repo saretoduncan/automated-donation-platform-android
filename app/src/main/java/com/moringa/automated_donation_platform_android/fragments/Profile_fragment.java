@@ -37,6 +37,7 @@ public class Profile_fragment extends Fragment {
         String usersId = userDetails.get(SessionManager.KEY_ID);
         String mEmail = userDetails.get(SessionManager.KEY_EMAIL);
         String mPhoneNumber= userDetails.get(SessionManager.KEY_PHONENUMBER);
+        String mProfileImage= userDetails.get(SessionManager.KEY_IMAGE);
 
         profileImage = (CircleImageView) view.findViewById(R.id.pro_profile_pic);
         profileName = (EditText)view.findViewById(R.id.profileName);
@@ -45,7 +46,7 @@ public class Profile_fragment extends Fragment {
         profileName.setText(name);
         email.setText(mEmail);
         phoneNumber.setText(mPhoneNumber);
-        Picasso.get().load(SessionManager.KEY_IMAGE).into(profileImage);
+        Picasso.get().load(mProfileImage).into(profileImage);
 
         return view;
     }

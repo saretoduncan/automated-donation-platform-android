@@ -182,7 +182,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
 
                          ((AppCompatActivity) context)
                                 .getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frameLayout1, payment_method).commit();
+                                .replace(R.id.frameLayout1, payment_method).addToBackStack(null).commit();
 
                          donationDialog.dismiss();
                     }
