@@ -1,5 +1,6 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 
 
 public class admin_request_fragment extends Fragment {
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.requestRecyclerView)
     RecyclerView recyclerView;
     OrganizationsRequestAdapter adapter;

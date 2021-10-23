@@ -1,5 +1,7 @@
 package com.moringa.automated_donation_platform_android.network;
 
+import com.moringa.automated_donation_platform_android.models.Admin;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -34,12 +36,13 @@ public class ApiClient {
         return beneficiaryService;
     }
     public static  DonationService getDonationService(){
-        DonationService donationService = getRetrofit().create(DonationService.class);
-        return donationService;
+        return getRetrofit().create(DonationService.class);
     }
 
     public static  CharityService getCharityService(){
-        CharityService charityService = getRetrofit().create(CharityService.class);
-        return charityService;
+        return getRetrofit().create(CharityService.class);
+    }
+    public static AdminServices getAdminServices(){
+      return getRetrofit().create(AdminServices.class);
     }
 }

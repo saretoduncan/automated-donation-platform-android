@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.moringa.automated_donation_platform_android.R;
 
 public class OrganizationListAdapter extends RecyclerView.Adapter<OrganizationListAdapter.OrganizationViewHolder>{
+
     @NonNull
     @Override
     public OrganizationListAdapter.OrganizationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
