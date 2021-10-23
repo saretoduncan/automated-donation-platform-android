@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+    android:layout_height="wrap_content"
        android:background="@color/white"
        android:paddingHorizontal="5dp"
        android:paddingVertical="5dp"
        android:layout_margin="10dp">
-      <de.hdodenhof.circleimageview.CircleImageView
-          android:id="@+id/img_donation_Profile"
-          android:background="@color/white"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:src="@drawable/charitypro"/>
-       <LinearLayout
+
+       <de.hdodenhof.circleimageview.CircleImageView
+           android:id="@+id/img_donation_Profile"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
+           android:background="@color/white"
+           android:src="@drawable/charitypro" />
+       <RelativeLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_toEndOf="@+id/img_donation_Profile"
-           android:orientation="vertical"
+           android:layout_centerVertical="true"
 
            android:layout_marginStart="5dp" >
+
            <TextView
+
+               android:id="@+id/m_profile_name"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Inua-dada Foundation"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="12dp"
-               android:text="2 hours ago"/>
-       </LinearLayout>
+               android:layout_centerInParent="true"
+               android:text="Inua-dada Foundation" />
+
+       </RelativeLayout>
+
        <TextView
+           android:id="@+id/total_donated_amount"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentEnd="true"
            android:layout_centerVertical="true"
-           android:textColor="@color/colorPrimary"
            android:text="ksh.2000"
-/>
-   </RelativeLayout>
-</FrameLayout>
+           android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>

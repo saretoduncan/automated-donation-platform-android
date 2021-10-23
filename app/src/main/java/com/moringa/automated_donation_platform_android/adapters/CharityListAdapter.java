@@ -83,6 +83,7 @@ public class CharityListAdapter extends RecyclerView.Adapter<CharityListAdapter.
     public void onBindViewHolder(@NonNull charityViewHolder holder, int position) {
 
         String id  = Integer.toString(this.convert.get(position).getId());
+
         String usersId=Integer.toString(convert.get(position).getUserId());
         Call<User> call = ApiClient.getDonationService().getCharityByUserId(usersId);
         call.enqueue(new Callback<User>() {
