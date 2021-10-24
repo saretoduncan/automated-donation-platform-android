@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,10 @@ import android.view.ViewGroup;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapters.OrganizationListAdapter;
 import com.moringa.automated_donation_platform_android.adapters.OrganizationsRequestAdapter;
+import com.moringa.automated_donation_platform_android.models.Admin;
 import com.moringa.automated_donation_platform_android.viewModel.AdminViewModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,11 +40,17 @@ public class admin_request_fragment extends Fragment {
         ButterKnife.bind(this,view);
         // Inflate the layout for this fragment
         viewModel = new ViewModelProvider(this).get(AdminViewModel.class);
+        viewModel.getAdminAllNotApproved();
+        viewModel.getAdminAllCharitiesObserve().observe(this, new Observer<List<Admin>>() {
+            @Override
+            public void onChanged(List<Admin> admins) {
+                adapter = new OrganizationsRequestAdapter(admins);// create new  of donation adapter
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//set recycler layout
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
 
-        adapter = new OrganizationsRequestAdapter();// create new  of donation adapter
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//set recycler layout
-        recyclerView.setAdapter(adapter);
         return view;
     }
 }

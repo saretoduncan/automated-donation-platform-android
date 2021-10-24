@@ -107,7 +107,7 @@ public class AdminViewModel extends ViewModel {
             }
         });
     }
-   public void setAdminAllNotApproved(){ //get all not approved
+   public void getAdminAllNotApproved(){ //get all not approved
         Call<List<Admin>> call = ApiClient.getAdminServices().adminGetAllNotApproved();
         call.enqueue(new Callback<List<Admin>>() {
             @Override
