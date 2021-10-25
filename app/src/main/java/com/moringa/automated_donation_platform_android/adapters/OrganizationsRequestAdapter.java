@@ -86,7 +86,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
         holder.approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Admin> approve = ApiClient.getAdminServices().adminApproveCharity(charityId);
+                Call<Admin>approve = ApiClient.getAdminServices().adminApproveCharity(charityId);
                 approve.enqueue(new Callback<Admin>() {
                     @Override
                     public void onResponse(Call<Admin> call, Response<Admin> response) {
