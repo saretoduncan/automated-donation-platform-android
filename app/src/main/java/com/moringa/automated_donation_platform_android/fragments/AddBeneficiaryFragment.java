@@ -82,7 +82,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_beneficiary, container, false);
         ButterKnife.bind(this,view);
-        MediaManager.init(getContext());
+//        MediaManager.init(getContext());
 
         SessionManager sessionManager = new SessionManager(getContext());
         HashMap<String,String> userDetails = sessionManager.getCharityDetailsFromSession();
@@ -128,6 +128,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
           Log.d(TAG, ": "+"request permission");
         }
         if(view == mAddBtn){
+            MediaManager.init(getContext());
             uploadImageToCloudinary();
         }
     }
