@@ -44,7 +44,7 @@ public class admin_request_fragment extends Fragment {
         viewModel.getAdminAllCharitiesObserve().observe(this, new Observer<List<Admin>>() {
             @Override
             public void onChanged(List<Admin> admins) {
-                adapter = new OrganizationsRequestAdapter(admins);// create new  of donation adapter
+                adapter = new OrganizationsRequestAdapter(admins, getContext());// create new  of donation adapter
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//set recycler layout
                 recyclerView.setAdapter(adapter);
             }
