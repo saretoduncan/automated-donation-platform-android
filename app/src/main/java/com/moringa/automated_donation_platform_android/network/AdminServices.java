@@ -26,4 +26,8 @@ public interface AdminServices {
     Call<Admin>  adminApproveCharity(@Path("charityId") String charityId );
     @DELETE("api/deleteCharityOrganizationByid/{id}")//delete charity Organization
     Call<Void> adminDeleteCharityOrganisation(@Path("id") String charityId);
+
+
+    @GET("api/admin/approvedCharity/{charityId}")
+    Call<Admin> checkIfCharityIsApproved(@Path("charityId") int charityId);
 }

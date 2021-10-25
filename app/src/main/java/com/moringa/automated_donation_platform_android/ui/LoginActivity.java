@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.Payment_Method;
+import com.moringa.automated_donation_platform_android.models.Admin;
 import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.LoginRequest;
 import com.moringa.automated_donation_platform_android.models.LoginResponse;
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.passwordEditText) EditText password;
     @BindView(R.id.forgotPasswordTextView) TextView forgotPassword;
     private int userId;
+    private int charityId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,17 +113,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
                     User user = response.body();
                     SessionManager sessionManager = new SessionManager(LoginActivity.this);
                     userId = user.getId();
                     sessionManager.createLoginSession(user.getName(),user.getEmail(),user.getPhone_number(),user.getCategories(),user.getImage(),Integer.toString(user.getId()));
-                    getCharityDetails(sessionManager);
+
                     Intent intent = null;
                     switch(category) {
                         case "Charity":
-                            intent = new Intent(LoginActivity.this, CharityActivity.class);
-                            startActivity(intent);
+                            getCharityDetails(sessionManager);
                             break;
                         case "Donor":
 //
@@ -133,6 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             intent = new Intent(LoginActivity.this, AdminActivity.class);
                             startActivity(intent);
                     }
+                    Toast.makeText(LoginActivity.this, "Login successful.",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(LoginActivity.this, "Login failed.",
                             Toast.LENGTH_SHORT).show();
@@ -170,11 +172,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.isSuccessful()){
                     Charity mCharity = response.body();
                     sessionManager.createCharitySession(mCharity.getDescription(),mCharity.getTrustDeed(),Integer.toString(mCharity.getId()));
+                    charityId = mCharity.getId();
+                    Log.d("donorId",Integer.toString(charityId));
+                    checkIfCharityIsApproved(charityId);
                 }
             }
 
             @Override
             public void onFailure(Call<Charity> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void checkIfCharityIsApproved(int id){
+        Log.d("donorId",Integer.toString(id));
+        Call<Admin> call = ApiClient.getAdminServices().checkIfCharityIsApproved(id);
+        call.enqueue(new Callback<Admin>() {
+            @Override
+            public void onResponse(Call<Admin> call, Response<Admin> response) {
+                if(response.isSuccessful()){
+                    Admin approved = response.body();
+                    Intent intent = new Intent(LoginActivity.this, CharityActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this,
+                            "The charity has not been approved.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Admin> call, Throwable t) {
 
             }
         });
