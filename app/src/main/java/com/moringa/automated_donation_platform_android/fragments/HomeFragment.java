@@ -10,6 +10,7 @@
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.moringa.automated_donation_platform_android.SessionManager;
@@ -27,6 +28,8 @@
         import java.util.List;
         import java.util.Map;
 
+        import butterknife.BindView;
+        import butterknife.ButterKnife;
         import retrofit2.Call;
         import retrofit2.Callback;
         import retrofit2.Response;
@@ -37,6 +40,8 @@ public class HomeFragment extends Fragment {
     private int charityId;
     private int userId;
     private User user;
+    @BindView(R.id.paymentTextView) TextView totalPayments;
+    private int total =0;
     HashSet<String> userIds = new HashSet<>();
     List<User> nonAnonymousDonors = new ArrayList<>();
     List<DonationModel> donorList = new ArrayList<>();
@@ -56,6 +61,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this,view);
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.donorList);
         try {
             SessionManager sessionManager = new SessionManager(getContext());
@@ -119,11 +126,11 @@ public class HomeFragment extends Fragment {
                             if(Integer.parseInt(donor.getUserid()) == userDetails.getId()){
                                 Donor donorDetails = new Donor(userDetails.getName(), donor.getPaymentmode(),userDetails.getImage());
                                 Log.d("donorId", donorDetails.getName() +" "+ donorDetails.getAmount());
+                                total += Integer.parseInt(donorDetails.getAmount());
                                 nonAnonymousDonorsList.add(donorDetails);
-
                             }
                         }
-
+                        totalPayments.setText("Ksh. "+total);
                         DonorListAdapter mAdapter = new DonorListAdapter(getContext(),nonAnonymousDonorsList);
                         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
                         mRecyclerView.setAdapter(mAdapter);
