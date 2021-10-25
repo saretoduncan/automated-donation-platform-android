@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
@@ -48,6 +49,9 @@ public class Home_fragement extends Fragment {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.mainRecyclerView)
     RecyclerView recyclerView;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
 
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -64,11 +68,13 @@ public class Home_fragement extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(DonationCharityListViewModel.class);
         viewModel.makeApiCall();
-
+        progressBar.setVisibility(View.VISIBLE);
         viewModel.getCharityListObserver().observe(this, new Observer<List<Charity>>() {
+
             @Override
             public void onChanged(List<Charity> charityModels) {
                 if (charityModels!=null){
+
                     charityList = charityModels;
                     usersId = userDetails.get(SessionManager.KEY_ID);
 
@@ -76,7 +82,7 @@ public class Home_fragement extends Fragment {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setAdapter(adapter);
-
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), usersId, Toast.LENGTH_SHORT).show();
 
                 }

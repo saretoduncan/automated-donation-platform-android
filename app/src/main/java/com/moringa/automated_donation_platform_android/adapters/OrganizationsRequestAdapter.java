@@ -6,6 +6,7 @@ import android.util.JsonToken;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +40,12 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
     private List<Admin> admins;
     AdminViewModel adminViewModel;
     Context context;
+    ProgressBar progressBar;
 
-    public OrganizationsRequestAdapter(List<Admin> admins, Context context) {
+    public OrganizationsRequestAdapter(List<Admin> admins, Context context, ProgressBar progressBar) {
         this.admins= admins;
         this.context= context;
+        this.progressBar = progressBar;
     }
 
     @NonNull
@@ -56,6 +59,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         String charityId= this.admins.get(position).getCharityid();
         Call<Charity> charityCall= ApiClient.getCharityService().getCharity(Integer.parseInt(charityId));
+
         charityCall.enqueue(new Callback<Charity>() {
             @Override
             public void onResponse(Call<Charity> call, Response<Charity> response) {
@@ -91,14 +95,17 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
             }
         });
         holder.approve.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 Call<Void>approve = ApiClient.getAdminServices().adminApproveCharity(charityId);
                 approve.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         if(response.code()==200){
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(view.getContext(), "approval success", Toast.LENGTH_SHORT).show();
                             ((AppCompatActivity) context)
                                     .getSupportFragmentManager().beginTransaction()
@@ -119,12 +126,14 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
        holder.cancelApproval.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               progressBar.setVisibility(View.VISIBLE);
                Call<Void> cancelRequest = ApiClient.getAdminServices().adminDeleteCharityOrganisation(charityId);
                cancelRequest.enqueue(new Callback<Void>() {
                    @Override
                    public void onResponse(Call<Void> call, Response<Void> response) {
                        if(response.code()==200){
-                           Toast.makeText(view.getContext(), "delete is a success", Toast.LENGTH_SHORT).show();
+                           progressBar.setVisibility(View.GONE);
+
                        }else Toast.makeText(view.getContext(), "delete is not success", Toast.LENGTH_SHORT).show();
                    }
 

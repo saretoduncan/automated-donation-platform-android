@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +35,12 @@ import retrofit2.Response;
 
 public class OrganizationListAdapter extends RecyclerView.Adapter<OrganizationListAdapter.OrganizationViewHolder>{
     List<Admin> admin;
-    Context context;
-    public OrganizationListAdapter(List<Admin> admins, Context context) {
+    Context context;;
+    ProgressBar progressBar;
+    public OrganizationListAdapter(List<Admin> admins, Context context, ProgressBar progressbar) {
         this.admin = admins;
         this.context= context;
+        this.progressBar= progressbar;
 
     }
 
@@ -50,12 +53,14 @@ public class OrganizationListAdapter extends RecyclerView.Adapter<OrganizationLi
 
     @Override
     public void onBindViewHolder(@NonNull OrganizationViewHolder holder, int position) {
+        progressBar.setVisibility(View.VISIBLE);
         String charityId= this.admin.get(position).getCharityid();
         Call<Charity> charityCall= ApiClient.getCharityService().getCharity(Integer.parseInt(charityId));
         charityCall.enqueue(new Callback<Charity>() {
             @Override
             public void onResponse(Call<Charity> call, Response<Charity> response) {
                 if(response.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);
                     System.out.println("charityResponse::: was a success");
 
                     int userId= response.body().getUserId();
@@ -88,17 +93,22 @@ public class OrganizationListAdapter extends RecyclerView.Adapter<OrganizationLi
             }
         });
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+               progressBar.setVisibility(View.VISIBLE);
                 Call<Void> cancelRequest = ApiClient.getAdminServices().adminDeleteCharityOrganisation(charityId);
+
                 cancelRequest.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.code()==200){
+                           progressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(view.getContext(), "delete is a success", Toast.LENGTH_SHORT).show();
                             ((AppCompatActivity) context)
                                     .getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.frameLayout3, new admin_home_fragment()).commit();
+                            progressBar.setVisibility(View.GONE);
                         }else Toast.makeText(view.getContext(), "delete is not success", Toast.LENGTH_SHORT).show();
                     }
 
@@ -128,6 +138,8 @@ public class OrganizationListAdapter extends RecyclerView.Adapter<OrganizationLi
         @SuppressLint("NonConstantResourceId")
         @BindView(R.id.deleteButton)
         TextView deleteButton;
+        @SuppressLint("NonConstantResourceId")
+
         public OrganizationViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

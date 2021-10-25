@@ -1,5 +1,6 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.moringa.automated_donation_platform_android.R;
@@ -29,10 +31,14 @@ import butterknife.ButterKnife;
 
 public class DonationList_fragment extends Fragment {
     private DonationListAdapter adapter;//donation list adapter
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.donorsRecyclerView)
     RecyclerView recyclerView;
     DonorDonationListViewModel viewModel;
     List<DonationModel> donationList;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
 
 
 
@@ -48,6 +54,7 @@ public class DonationList_fragment extends Fragment {
         Toast.makeText(getContext(), userId, Toast.LENGTH_SHORT).show();
       viewModel= new ViewModelProvider(this).get(DonorDonationListViewModel.class);
       viewModel.makeApiCall(userId);
+      progressBar.setVisibility(View.VISIBLE);
       viewModel.getDonationListObserve().observe(getViewLifecycleOwner(), new Observer<List<DonationModel>>() {
           @Override
           public void onChanged(List<DonationModel> donationModels) {
@@ -60,6 +67,7 @@ public class DonationList_fragment extends Fragment {
                   LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                   recyclerView.setLayoutManager(linearLayoutManager);//set recycler layout
                   recyclerView.setAdapter(adapter);
+                  progressBar.setVisibility(View.GONE);
               }
           }
       });

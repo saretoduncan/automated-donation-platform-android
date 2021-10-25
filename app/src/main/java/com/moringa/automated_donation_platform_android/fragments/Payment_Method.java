@@ -1,6 +1,7 @@
 package com.moringa.automated_donation_platform_android.fragments;
 
 import android.annotation.SuppressLint;
+import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +51,9 @@ public class Payment_Method extends Fragment {
     RadioButton radioButton;
     Button pay_button;
     Bundle bundle;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
     NewDonationViewModel newDonationViewModel;
     TextView backButton,add_card, profileName,amount;
     CircleImageView profileImage;
@@ -59,6 +66,7 @@ public class Payment_Method extends Fragment {
         hideToolBar();//hide action and tool bars
 
         View mView= inflater.inflate(R.layout.fragment_payment__method, container, false);
+        ButterKnife.bind(this, mView);
         radioGroup= (RadioGroup) mView.findViewById(R.id.radioGender);
         pay_button=(Button) mView.findViewById(R.id.pay_button);
          backButton= (TextView) mView.findViewById(R.id.back_button_1);
@@ -71,11 +79,13 @@ public class Payment_Method extends Fragment {
          Bundle bundle = getArguments();
          profileName.setText(String.valueOf(bundle.getString("profileName")));
          amount.setText("Ksh " +String.valueOf(bundle.getString("amount")));
+         progressBar.setVisibility(View.VISIBLE);
         Call<User> call = ApiClient.getDonationService().getCharityByUserId(bundle.getString("charity_user"));
         call.enqueue(new Callback<User>() {
                          @Override
                          public void onResponse(Call<User> call, Response<User> response) {
                              if (response.isSuccessful()) {
+                                 progressBar.setVisibility(View.GONE);
                                  System.out.println("userResponse::" + "is success");
                                  if (!response.body().getImage().equals("")) {
                                      Picasso.get().load(response.body().getImage()).into(profileImage);
@@ -94,6 +104,7 @@ public class Payment_Method extends Fragment {
                          }
                      });
          backButton.setOnClickListener(new View.OnClickListener() {
+
              @Override
              public void onClick(View view) {
 
@@ -114,6 +125,7 @@ public class Payment_Method extends Fragment {
          pay_button.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
+
                  int selecteId= radioGroup.getCheckedRadioButtonId();
                  radioButton=(RadioButton) mView.findViewById(selecteId);
                  Boolean anonymity;
@@ -146,13 +158,17 @@ public class Payment_Method extends Fragment {
 
         NewDonationViewModel newDonationViewModel = new ViewModelProvider(this).get(NewDonationViewModel.class);
         newDonationViewModel.makeApiCall(donation);
+        progressBar.setVisibility(View.VISIBLE);
         newDonationViewModel.getNewDonationObserver().observe(this, new Observer<DonationModel>() {
             @Override
             public void onChanged(DonationModel donationModel) {
                 if(donationModel==null){
                     Toast.makeText(getContext(), "not a success", Toast.LENGTH_SHORT).show();
                 }
-                else Toast.makeText(getContext(),"success", Toast.LENGTH_SHORT).show();
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getContext(),"success", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

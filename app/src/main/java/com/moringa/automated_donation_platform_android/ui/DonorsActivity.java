@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -20,18 +21,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
 import com.moringa.automated_donation_platform_android.fragments.*;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DonorsActivity extends AppCompatActivity {
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.navbar) BottomNavigationView bottomNav;
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.toolbar) View toolbar;
     TextView mDonorName;
-
+    CircleImageView profileImage;
     Home_fragement home_fragement;
     String userId;
 
@@ -41,6 +46,7 @@ public class DonorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_donors);
         ButterKnife.bind(this);
         mDonorName = (TextView) toolbar.findViewById(R.id.donorNameTextView);
+      profileImage= (CircleImageView) findViewById(R.id.donorProfileImage);
 
 
         SessionManager sessionManager = new SessionManager(this);
@@ -48,6 +54,7 @@ public class DonorsActivity extends AppCompatActivity {
         String name = userDetails.get(SessionManager.KEY_NAME);
         String usersId = userDetails.get(SessionManager.KEY_ID);
         mDonorName.setText(name);
+        Picasso.get().load(userDetails.get(SessionManager.KEY_IMAGE)).into(profileImage);
 
 
         home_fragement= new Home_fragement();
@@ -63,6 +70,7 @@ public class DonorsActivity extends AppCompatActivity {
     }
     private BottomNavigationView.OnNavigationItemSelectedListener  navListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @SuppressLint("NonConstantResourceId")
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;

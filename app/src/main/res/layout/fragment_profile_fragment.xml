@@ -25,7 +25,8 @@
         android:text="@string/jemimah"
         android:textColor="@color/colorPrimary"
 
-        />
+        android:autofillHints=""
+        android:inputType="text" />
 
     <LinearLayout
         android:id="@+id/mail"
