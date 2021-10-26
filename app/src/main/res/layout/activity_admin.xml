@@ -16,9 +16,10 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/admin_navbar"
         android:layout_below="@+id/admin_toolbar" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
         android:id="@+id/admin_navbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"

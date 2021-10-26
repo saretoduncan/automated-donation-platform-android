@@ -18,6 +18,14 @@
         android:textStyle="bold"
 
         android:layout_height="wrap_content"/>
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="match_parent"
+        android:id="@+id/progress_circular"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        android:visibility="gone"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_below="@+id/admin_request_tv"

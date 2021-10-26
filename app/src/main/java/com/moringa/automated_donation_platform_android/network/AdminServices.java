@@ -23,7 +23,7 @@ public interface AdminServices {
     @GET("api/admin/getallapprove")
     Call<List<Admin>>adminGetAllApproved();//get all approved
     @PATCH("api/admin/approve/{charityId}")//approve charity Organization
-    Call<Admin>  adminApproveCharity(@Path("charityId") String charityId );
+    Call<Void>  adminApproveCharity(@Path("charityId") String charityId );
     @DELETE("api/deleteCharityOrganizationByid/{id}")//delete charity Organization
     Call<Void> adminDeleteCharityOrganisation(@Path("id") String charityId);
 

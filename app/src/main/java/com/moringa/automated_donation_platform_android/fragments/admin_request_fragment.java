@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.adapters.OrganizationListAdapter;
@@ -31,6 +32,9 @@ public class admin_request_fragment extends Fragment {
     RecyclerView recyclerView;
     OrganizationsRequestAdapter adapter;
     AdminViewModel viewModel;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
 
 
     @Override
@@ -41,12 +45,15 @@ public class admin_request_fragment extends Fragment {
         // Inflate the layout for this fragment
         viewModel = new ViewModelProvider(this).get(AdminViewModel.class);
         viewModel.getAdminAllNotApproved();
+        progressBar.setVisibility(View.VISIBLE);
         viewModel.getAdminAllCharitiesObserve().observe(this, new Observer<List<Admin>>() {
             @Override
             public void onChanged(List<Admin> admins) {
-                adapter = new OrganizationsRequestAdapter(admins);// create new  of donation adapter
+
+                adapter = new OrganizationsRequestAdapter(admins, getContext(), progressBar);// create new  of donation adapter
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//set recycler layout
                 recyclerView.setAdapter(adapter);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

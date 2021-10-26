@@ -1,19 +1,24 @@
 package com.moringa.automated_donation_platform_android.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.JsonToken;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.automated_donation_platform_android.R;
+import com.moringa.automated_donation_platform_android.fragments.admin_home_fragment;
+import com.moringa.automated_donation_platform_android.fragments.admin_request_fragment;
 import com.moringa.automated_donation_platform_android.models.Admin;
 import com.moringa.automated_donation_platform_android.models.Charity;
 import com.moringa.automated_donation_platform_android.models.User;
@@ -34,9 +39,13 @@ import retrofit2.Response;
 public class OrganizationsRequestAdapter extends RecyclerView.Adapter<OrganizationsRequestAdapter.RequestViewHolder> {
     private List<Admin> admins;
     AdminViewModel adminViewModel;
+    Context context;
+    ProgressBar progressBar;
 
-    public OrganizationsRequestAdapter(List<Admin> admins) {
+    public OrganizationsRequestAdapter(List<Admin> admins, Context context, ProgressBar progressBar) {
         this.admins= admins;
+        this.context= context;
+        this.progressBar = progressBar;
     }
 
     @NonNull
@@ -50,6 +59,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         String charityId= this.admins.get(position).getCharityid();
         Call<Charity> charityCall= ApiClient.getCharityService().getCharity(Integer.parseInt(charityId));
+
         charityCall.enqueue(new Callback<Charity>() {
             @Override
             public void onResponse(Call<Charity> call, Response<Charity> response) {
@@ -65,6 +75,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
                             if (response.isSuccessful()) {
                                 System.out.println("user.request::: is a success");
                                 holder.organisationName.setText(response.body().getName());
+
                             }else System.out.println("user.request::: is not a success");
                         }
 
@@ -84,33 +95,45 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
             }
         });
         holder.approve.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Call<Admin>approve = ApiClient.getAdminServices().adminApproveCharity(charityId);
-                approve.enqueue(new Callback<Admin>() {
+                progressBar.setVisibility(View.VISIBLE);
+                Call<Void>approve = ApiClient.getAdminServices().adminApproveCharity(charityId);
+                approve.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Admin> call, Response<Admin> response) {
-                        if(response.isSuccessful()){
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        if(response.code()==200){
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(view.getContext(), "approval success", Toast.LENGTH_SHORT).show();
+                            ((AppCompatActivity) context)
+                                    .getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frameLayout3, new admin_request_fragment()).commit();
+
                         }else Toast.makeText(view.getContext(), "approval not a success", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onFailure(Call<Admin> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
 
                     }
+
                 });
+
             }
         });
        holder.cancelApproval.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               progressBar.setVisibility(View.VISIBLE);
                Call<Void> cancelRequest = ApiClient.getAdminServices().adminDeleteCharityOrganisation(charityId);
                cancelRequest.enqueue(new Callback<Void>() {
                    @Override
                    public void onResponse(Call<Void> call, Response<Void> response) {
-                       if(response.isSuccessful()){
-                           Toast.makeText(view.getContext(), "delete is a success", Toast.LENGTH_SHORT).show();
+                       if(response.code()==200){
+                           progressBar.setVisibility(View.GONE);
+
                        }else Toast.makeText(view.getContext(), "delete is not success", Toast.LENGTH_SHORT).show();
                    }
 

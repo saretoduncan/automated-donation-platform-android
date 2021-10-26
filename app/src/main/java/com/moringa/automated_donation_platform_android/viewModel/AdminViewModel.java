@@ -72,10 +72,10 @@ public class AdminViewModel extends ViewModel {
         });
     }
    public void approveAdminCharity(String charityId){ //approve a charity
-        Call<Admin> call = ApiClient.getAdminServices().adminApproveCharity(charityId);
-        call.enqueue(new Callback<Admin>() {
+        Call<Void> call = ApiClient.getAdminServices().adminApproveCharity(charityId);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Admin> call, Response<Admin> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     System.out.println("charityApproval::: is a success" );
                 }else{
@@ -83,7 +83,7 @@ public class AdminViewModel extends ViewModel {
                 }
             }
             @Override
-            public void onFailure(Call<Admin> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
             }
         });
     }

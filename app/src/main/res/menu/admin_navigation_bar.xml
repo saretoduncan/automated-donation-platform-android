@@ -6,9 +6,9 @@
         android:title="Home"/>
     <item
         android:id="@+id/nav_admin_Beneficiaries"
-        android:icon="@drawable/ic_baseline_insert_emoticon_24"
+        android:icon="@drawable/ic_baseline_approval_24"
         android:enabled="true"
-        android:title="Beneficiaries"/>
+        android:title="Requests"/>
 
     <item
         android:id="@+id/nav_admin_Logout"
