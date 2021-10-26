@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -40,13 +41,13 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,   AdapterView.OnItemSelectedListener  {
     private String category;
     List<String> categories;
-    ProgressDialog progressDialog;
     @BindView(R.id.spinner) Spinner spinner;
     @BindView(R.id.loginButton) Button mLoginBtn;
     @BindView(R.id.registerTextView) TextView mSignup;
     @BindView(R.id.emailEditText) EditText email;
     @BindView(R.id.passwordEditText) EditText password;
     @BindView(R.id.forgotPasswordTextView) TextView forgotPassword;
+    @BindView(R.id.progress_circular) ProgressBar progressBar;
     private int userId;
     private int charityId;
 
@@ -66,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        progressDialog = new ProgressDialog(this);
 
         mLoginBtn.setOnClickListener(this);
         mSignup.setOnClickListener(this);
@@ -75,10 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == mLoginBtn){
-            progressDialog.show();
-            progressDialog.setMessage("logging in...");
+            progressBar.setVisibility(View.VISIBLE);
             login();
-            progressDialog.dismiss();
         }
         if (v == mSignup) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
@@ -112,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginResponseCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                progressBar.setVisibility(View.GONE);
                 if(response.isSuccessful()){
                     User user = response.body();
                     SessionManager sessionManager = new SessionManager(LoginActivity.this);

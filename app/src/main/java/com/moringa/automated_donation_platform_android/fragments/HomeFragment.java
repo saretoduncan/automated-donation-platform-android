@@ -10,6 +10,7 @@
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.ProgressBar;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -46,7 +47,8 @@ public class HomeFragment extends Fragment {
     List<User> nonAnonymousDonors = new ArrayList<>();
     List<DonationModel> donorList = new ArrayList<>();
     List<Donor> nonAnonymousDonorsList = new ArrayList<>();
-
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -83,6 +85,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void getNonAnoymousDonors() throws IOException {
+        progressBar.setVisibility(View.VISIBLE);
         Call<List<DonationModel>> listCall = ApiClient.getCharityService().getNonAnonymousDonorsForACharity(charityId);
         listCall.enqueue(new Callback<List<DonationModel>>() {
             @Override
@@ -100,6 +103,7 @@ public class HomeFragment extends Fragment {
                     for (Donor list:nonAnonymousDonorsList) {
                         Log.d("donorId", list.getName() + " "+ list.getAmount() + " "+list.getImage());
                     }
+                    progressBar.setVisibility(View.GONE);
 
                     Toast.makeText(getContext(), "Retrieved non anonymous donors successfully", Toast.LENGTH_SHORT).show();
                 }

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.LoginActivity"
     android:background="@color/colorAccent">
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -19,6 +18,15 @@
         android:text="Welcome Back!"
         android:textSize="25dp"
         android:textStyle="bold" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="match_parent"
+        android:id="@+id/progress_circular"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/imageView2"

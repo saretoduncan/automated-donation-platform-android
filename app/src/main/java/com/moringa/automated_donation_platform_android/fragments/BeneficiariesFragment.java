@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.moringa.automated_donation_platform_android.R;
 import com.moringa.automated_donation_platform_android.SessionManager;
@@ -34,6 +35,8 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
     RecyclerView mRecyclerView;
     List<Beneficiary> mBeneficiaries;
     @BindView(R.id.addBeneficiaryBtn) Button addBtn;
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
     private int charityId;
 
     public BeneficiariesFragment() {
@@ -44,26 +47,6 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBeneficiaries = new ArrayList<>();
-//        mBeneficiaries.add(new Beneficiary("Nelly Nayoma","“I can now concentrate in class, I find no reason to miss\n" +
-//                " classes during my periods, I can stand in front of my \n" +
-//                "classmates and solve a math problem, I have developed a love\n" +
-//                " for soccer, and I can do all of this without thinking of my \n" +
-//                "period when they arrive,” ", R.drawable.pic1));
-//        mBeneficiaries.add(new Beneficiary("Akura rakera","“I can now concentrate in class, I find no reason to miss\n" +
-//                " classes during my periods, I can stand in front of my \n" +
-//                "classmates and solve a math problem, I have developed a love\n" +
-//                " for soccer, and I can do all of this without thinking of my \n" +
-//                "period when they arrive,” ",R.drawable.pic2));
-//        mBeneficiaries.add(new Beneficiary("Clare Limo","“I can now concentrate in class, I find no reason to miss\n" +
-//                " classes during my periods, I can stand in front of my \n" +
-//                "classmates and solve a math problem, I have developed a love\n" +
-//                " for soccer, and I can do all of this without thinking of my \n" +
-//                "period when they arrive,” ",R.drawable.pic3));
-//        mBeneficiaries.add(new Beneficiary("Duncan Moiyo","“I can now concentrate in class, I find no reason to miss\n" +
-//                " classes during my periods, I can stand in front of my \n" +
-//                "classmates and solve a math problem, I have developed a love\n" +
-//                " for soccer, and I can do all of this without thinking of my \n" +
-//                "period when they arrive,” ",R.drawable.pic4));
 
     }
 
@@ -96,12 +79,14 @@ public class BeneficiariesFragment extends Fragment implements  View.OnClickList
     }
 
     public void getBeneficiaries(){
+        progressBar.setVisibility(View.VISIBLE);
         BeneficiaryService client = ApiClient.getBeneficiaryService();
         Call<List<Beneficiary>> call =client.getBeneficiariesForACharity(charityId);
         call.enqueue(new Callback<List<Beneficiary>>() {
             @Override
             public void onResponse(Call<List<Beneficiary>> call, Response<List<Beneficiary>> response) {
                 if(response.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
                     mBeneficiaries = response.body();
                     for (Beneficiary beneficiary:mBeneficiaries) {
                         Log.d("My beneficiaries",beneficiary.getName());

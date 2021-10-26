@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
     private Uri trustDeedUri;
     private int userId;
     AdminViewModel viewModel;
+    @BindView(R.id.progress_circular) ProgressBar progressBar;
     private static final String TAG = "Upload ###";
 
     public CharityApprovalFragment() {
@@ -131,6 +133,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
             @Override
             public void onChanged(Admin admin) {
                 if(admin!=null){
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(),"request sent", Toast.LENGTH_SHORT).show();
                 }else Toast.makeText(getContext(), "request not sent", Toast.LENGTH_SHORT).show();
             }
@@ -156,6 +159,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
         }
         if (view == sendBtn){
             try {
+                progressBar.setVisibility(View.VISIBLE);
                 uploadPdfToCloudinary();
                 sendApprovalRequest();
             }catch (Exception e){
@@ -207,7 +211,6 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
     }
 
     public void uploadPdfToCloudinary(){
-
         MediaManager.get().upload(trustDeedUri).option("format","png").callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {

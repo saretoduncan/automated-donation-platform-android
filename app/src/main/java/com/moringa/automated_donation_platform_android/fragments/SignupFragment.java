@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     @BindView(R.id.phoneEditText) EditText mPhoneNumber;
     @BindView(R.id.uploadImg) Button uploadImage;
     @BindView(R.id.loginTextView) TextView loginPage;
+    @BindView(R.id.progress_circular)ProgressBar progressBar;
 
     Uri imageUri = null;
     String imagePath;
@@ -143,6 +145,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
                     if(callbackFragment != null && category.equals("Charity")){
                         User user = response.body();
                         SessionManager sessionManager = new SessionManager(getContext());
@@ -151,6 +154,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
                     }else{
                         moveToNewActivity();
                     }
+
                     Toast.makeText(getContext(), "Authentication Successful", Toast.LENGTH_SHORT).show();
 
                 }else {
@@ -261,7 +265,7 @@ public class SignupFragment extends Fragment implements  AdapterView.OnItemSelec
     }
 
     public void uploadImageToCloudinary(){
-
+        progressBar.setVisibility(View.VISIBLE);
         MediaManager.get().upload(imageUri).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {

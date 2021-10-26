@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cloudinary.Url;
@@ -59,6 +60,8 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     @BindView(R.id.beneficiaryImageView) ImageView mProfile;
     @BindView(R.id.beneficiaryImageUploadBtn) Button uploadImage;
     @BindView(R.id.addBeneficiary) Button mAddBtn;
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
     private Uri imageUri;
     private String imagePath;
     private Beneficiary mBeneficiary;
@@ -103,6 +106,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
             @Override
             public void onResponse(Call<Beneficiary> call, Response<Beneficiary> response) {
                 if(response.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
                     List<Beneficiary> beneficiaries = new ArrayList<>();
                     beneficiaries.add(response.body());
                     mBeneficiary = response.body();
@@ -134,7 +138,7 @@ public class AddBeneficiaryFragment extends Fragment implements View.OnClickList
     }
 
     public void uploadImageToCloudinary(){
-
+        progressBar.setVisibility(View.VISIBLE);
         MediaManager.get().upload(imageUri).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
