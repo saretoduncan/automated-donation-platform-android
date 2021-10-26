@@ -60,7 +60,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         String charityId= this.admins.get(position).getCharityid();
         Log.d("donorId",charityId);
-        Call<Charity> charityCall= ApiClient.getCharityService().getCharity(Integer.parseInt(charityId));
+        Call<Charity> charityCall= ApiClient.getCharityService().getcharityById(charityId);
 
         charityCall.enqueue(new Callback<Charity>() {
             @Override

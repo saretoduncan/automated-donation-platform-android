@@ -21,4 +21,6 @@ public interface CharityService {
 
     @GET("api/donations/nonAnonymous/{charityId}")
     Call<List<DonationModel>> getNonAnonymousDonorsForACharity(@Path("charityId") int charityId);
+    @GET("api/charity/{id}")
+    Call <Charity> getcharityById(@Path("id") String id);
 }
