@@ -7,9 +7,10 @@
     tools:context=".ui.DonorsActivity"
     android:background="#FBF0F0"
     >
-    <include layout="@layout/toolbar"
+
+    <include
         android:id="@+id/toolbar"
-        />
+        layout="@layout/toolbar" />
 
 <FrameLayout
     android:layout_width="match_parent"
