@@ -3,6 +3,7 @@ package com.moringa.automated_donation_platform_android.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.JsonToken;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class OrganizationsRequestAdapter extends RecyclerView.Adapter<Organizati
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         String charityId= this.admins.get(position).getCharityid();
+        Log.d("donorId",charityId);
         Call<Charity> charityCall= ApiClient.getCharityService().getCharity(Integer.parseInt(charityId));
 
         charityCall.enqueue(new Callback<Charity>() {

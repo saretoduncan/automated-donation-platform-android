@@ -126,6 +126,7 @@ public class CharityApprovalFragment extends Fragment implements View.OnClickLis
         SessionManager sessionManager = new SessionManager(requireContext());
         HashMap<String,String> userDetails = sessionManager.getCharityDetailsFromSession();
         String charityId = userDetails.get(SessionManager.KEY_CHARITYID);
+        Log.d("donorId",charityId);
         viewModel = new ViewModelProvider(this). get(AdminViewModel.class);
         Admin admin = new Admin(charityId);
         viewModel.sendApprovalRequest(admin);
