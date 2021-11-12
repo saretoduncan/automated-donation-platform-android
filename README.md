@@ -29,7 +29,7 @@ $ git clone https://github.com/saretoduncan/automated-donation-platform-android.
 
 ```
 
-## Author
+## Authors
 
 👤 **Author**
 
@@ -39,6 +39,7 @@ $ git clone https://github.com/saretoduncan/automated-donation-platform-android.
 - twitter: [@duncan_sareto](https://twitter.com/duncan_sareto)
 - email: <a href="mailto:duncan.moiyo@student.moringaschool.com"> mail📪</a>
 
+👤 **Author**
 2. Clare Limo
 - GitHub: [@clarelimo](https://github.com/clarelimo)
 - email: <a href="mailto:clarelimoh@gmail.com"> mail📪</a>
