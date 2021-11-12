@@ -1,6 +1,6 @@
 # automated-donation-platform-android
 
-An application that enables a user to donate to charity organizations
+An android application that enables a user to donate to charity organizations
 
 
 ## Built With
